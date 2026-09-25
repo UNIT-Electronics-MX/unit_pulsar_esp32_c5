@@ -1,111 +1,179 @@
-# UNIT PULSAR RP2350 Hardware
+# UNIT PULSAR ESP32-C5 Hardware
 
 ## Hardware Scope
 
-This hardware reference covers hardware revision V1.3.0 and its schematic. It
-separates design-defined connections from values not specified by the available
-board-level documentation. The board uses an RP2350A controller; the schematic
-title block says `PULSAR RP230A` and `REV: 1.0.0`.
+This hardware reference covers schematic revision V1.2.3 (SKU `UE0134`) and
+its bill of materials. It separates design-defined connections from values not
+specified by the available board-level documentation. The board uses an
+ESP32-C5HR8 controller; the schematic title block says `PULSAR ESP32 C5`, with
+`REV: 1.2.0` on sheet 1 and `REV: 1.2.3` on sheet 2.
 
 ## Power Tree
 
-![Power Tree](resources/unit_power_tree_v_1_0_0_ue0103_pulsar_rp2350a.jpg)
+A power-tree drawing for the ESP32-C5 board is not yet available. The
+functional path defined by the schematic is:
+
+```text
+USB-C VBUS --D1--+
+                 +--> +5V --> BQ24074 IN
+VIN -------D4----+              |
+                                +--> BMS_OUT --> SGM6029 buck --> 3.3 V
+VBAT (JP1 / J3) <--> BQ24074 BAT
+```
 
 ## Block Diagram
 
-![Block Diagram](resources/unit_block_v_1_0_0_ue0103_pulsar_rp2350a.jpg)
+A block-diagram drawing for the ESP32-C5 board is not yet available. See
+[Topology](#topology) for the functional relationships.
 
 ## Naming Rules
 
-- Product name: **UNIT PULSAR RP2350 Multi-Interface Development Board**.
+- Product name: **UNIT PULSAR ESP32-C5 Multi-Interface Development Board**.
 - Product family: **UNIT DevLab ecosystem**; `DevLab` is not part of the
   product name.
 - Source assets use lowercase, descriptive names and explicit
-  revisions, for example `unit_top_v_1_3_0_pulsar_rp2350a.png`.
+  revisions, for example `unit_sch_v_1_2_3_ue0134_pulsar_esp32_c5.pdf`.
 - Generated Product Reference files use
-  `unit_product_reference_v_0_1_0_pulsar_rp2350a.*`.
+  `unit_product_reference_v_0_1_0_pulsar_esp32_c5.*`.
 
 ## Hardware
 
 | RefDes | Component | Confirmed role |
 |---|---|---|
-| IC3 | RP2350A | Main microcontroller |
-| IC1 | W25Q128JVPIQ | 128 Mbit (16 MiB) QSPI flash |
-| IC4 | APS6404L-3SQR-ZR | 8 MiB PSRAM |
-| IC5 | BMI270 | Six-axis IMU on the internal I2C bus |
-| MK1 | ICS-41350 | Digital PDM microphone |
-| U1 | AP2112K-3.3TRG1 | Fixed 3.3 V LDO |
-| IC2 | MCP73831T-2ACI/OT | Single-cell Li-Ion/Li-Polymer charge controller |
-| MICRO_SD-HOLDER | 47309-2651 | microSD socket on four-bit SDIO signals |
-| LED1–LED3 | WS2812 1010 | Cascaded addressable RGB LEDs |
+| IC1 | ESP32-C5HR8 | Main SoC; 2.4/5 GHz Wi-Fi 6, Bluetooth LE 5, IEEE 802.15.4; 8 MB in-package PSRAM |
+| IC3 | BY25Q64ESHIG | 64 Mbit (8 MiB) quad SPI NOR flash |
+| IC2 | BQ24074RGTR | Single-cell Li-Ion charger with power-path management |
+| U2 | SGM6029CYG | 1 A synchronous buck regulator for the 3.3 V rail |
+| IC4 | MAX17048G+T10 | Battery fuel gauge on the sensor I2C bus |
+| U4 | MMC5603NJ | Three-axis magnetometer on the sensor I2C bus |
+| U$36 | FHT40 (BOM) / SHT40 (schematic) | Humidity and temperature sensor on the sensor I2C bus |
+| A2 | LPS22HBTR (BOM) / LPS22DFTR (schematic) | Barometric pressure sensor on the sensor I2C bus |
+| U3 | VCNL4040M3OE | Proximity and ambient-light sensor on the sensor I2C bus |
+| U1 | LFD182G45DCHD277 | 2.4 GHz / 5 GHz RF diplexer |
+| J2 | RF1-2626-125CE-CT | RF coaxial antenna connector |
+| XTAL1 | SX0B48.000F0810F30 | 48 MHz main crystal |
+| MICRO_SD-HOLDER | 47309-2651 | microSD socket on SPI signals |
+| LED1 | WS2812 1010 | Addressable RGB LED |
 | J1 | HCZZ0032-4 | Four-position, 1 mm QWIIC-style connector |
-| J5 | FH34SRJ-22S-0.5SH(50) | 22-position, 0.5 mm HSTX expansion connector |
-| JP1 | PH2.0 2P | Two-position battery connection |
+| J20 | SM06B-SRSS-TB | Six-position, 1 mm SPI expansion connector |
+| JP1 | PH2.0 2P | Two-position battery connection, 2.0 mm |
+| J3 | Würth 1.25 mm 2P | Two-position battery connection, 1.25 mm (parallel to JP1) |
+| S1, S2 | 1TS026A-1600-0553-CT | BOOT and RESET push buttons |
 
 Individual component ratings are not module ratings. In particular, the allowed
 `VIN`, `VBAT`, and 3.3 V rail loads are not specified at module level.
 
-![UNIT PULSAR RP2350 top view](resources/unit_top_v_1_3_0_pulsar_rp2350a.png)
-
-![UNIT PULSAR RP2350 bottom view](resources/unit_btm_v_1_3_0_pulsar_rp2350a.png)
+Board photographs for the ESP32-C5 revision are not yet available.
 
 ## Pinout
 
-<div align="center">
-    <a href="./unit_pinout_v1_3_0_ue0103_pulsar_rp2350a_en.pdf"><img src="./resources/unit_pinout_v1_3_0_ue0103_pulsar_rp2350a_en.png" width="500px"><br/>Pinout</a>
-    <br/>
-    <br/>
-    <br/>
-</div>
-The following mapping is transcribed from the V1.3 schematic and visible board
-labels. `D8` and `D9` appear on the board but are not traced to RP2350A GPIOs
-in the available schematic; treat them as unassigned.
+A pinout drawing for the ESP32-C5 board is not yet available. The following
+mapping is transcribed from the V1.2.3 schematic (`ARDUINO_NANO_TEMPLATE`
+header, positions 1–30). GPIO numbers follow the ESP32-C5 datasheet pin table.
 
-| Board label | RP2350A connection | Function / status |
-|---|---|---|
-| `TX0` / `D1` | GPIO18 | UART-capable digital I/O |
-| `RX0` / `D0` | GPIO19 | UART-capable digital I/O |
-| `D2` | GPIO17 | Digital I/O; HSTX connector signal |
-| `D3` | GPIO16 | Digital I/O; HSTX connector signal |
-| `D4` | GPIO15 | Digital I/O; HSTX connector signal |
-| `D5` | GPIO14 | Digital I/O; HSTX connector signal |
-| `D6` | GPIO13 | Digital I/O; HSTX connector signal |
-| `D7` | GPIO12 | Digital I/O; HSTX connector signal |
-| `D8`, `D9` | Not specified | No RP2350A connection shown in the V1.3 schematic |
-| `D10` / `SS` | GPIO21 | Digital I/O |
-| `D11` / `MOSI` | GPIO22 | Digital I/O |
-| `D12` / `MISO` | GPIO23 | Digital I/O |
-| `D13` / `SCK` / LED | GPIO20 | Digital I/O and BUILTIN1 indicator |
-| `A1` / `D15` | GPIO29 / ADC3 | Analog-capable digital I/O |
-| `A2` / `D16` | GPIO27 / ADC1 | Analog-capable digital I/O |
-| `A3` / `D17` | GPIO26 / ADC0 | Analog-capable digital I/O |
-| `SDA` / `D18` | GPIO8 | Internal/user I2C data; BMI270 bus |
-| `SCL` / `D19` | GPIO9 | Internal/user I2C clock; BMI270 bus |
-| `D21` | GPIO10 | PDM microphone clock net (`CLK_MIC`) |
-| `RGB` | GPIO1 | WS2812 chain data (`NEOP_DO`) |
-| `3V3` | 3.3 V rail | Regulated rail; available current not specified |
-| `3EN` | LDO enable | Pulled up in the schematic |
-| `VBAT` | Battery rail | Operating limits not specified |
-| `VUSB` | USB VBUS | USB-C supply rail |
-| `VIN` | System supply input | Allowed input range not specified |
-| `RST` | Reset | RP2350A reset control |
-| `GND` | Ground | Common return |
+| Pos. | Board label | ESP32-C5HR8 connection | Function / status |
+|---:|---|---|---|
+| 1 | `D13` / `SCK` / LED | GPIO27 | SPI clock; microSD CLK; J20; `BUILTIN2` LED; strapping pin |
+| 2 | `3V3` | 3.3 V rail | Regulated rail; available current not specified |
+| 3 | `EN` | SGM6029 enable | Through solder jumper |
+| 4 | `VBAT` | Battery rail | Through solder jumper |
+| 5 | `A1` / `D15` | GPIO1 / ADC1_CH0 | QWIIC SDA |
+| 6 | `A2` / `D16` | GPIO4 / ADC1_CH3 | Analog-capable digital I/O (MTCK) |
+| 7 | `A3` / `D17` | GPIO5 / ADC1_CH4 | Analog-capable digital I/O (MTDO) |
+| 8 | `SDA` / `D18` | GPIO2 / ADC1_CH1 | I2C data; sensor bus; strapping pin (MTMS) |
+| 9 | `SCL` / `D19` | GPIO3 / ADC1_CH2 | I2C clock; sensor bus; strapping pin (MTDI) |
+| 10 | `A6` / `D21` | GPIO6 / ADC1_CH5 | QWIIC SCL; optional VCNL4040 `INT` |
+| 11 | `NEOPIXEL DOUT` | LED1 `DO` | Through solder jumper |
+| 12 | `VBUS` | USB VBUS | USB-C supply rail |
+| 13 | `GND` | Ground | Through solder jumper (Nano `RESET` position) |
+| 14 | `GND` | Ground | Common return |
+| 15 | `VIN` | System supply input | Joins `+5V` through Schottky diode D4 |
+| 16 | `TX0` / `D1` | GPIO11 / U0TXD | UART TX through 499 Ω R3 |
+| 17 | `RX0` / `D0` | GPIO12 / U0RXD | UART RX |
+| 18 | `RST` | `CHIP_PU` | Reset; 10 kΩ pull-up and 100 nF |
+| 19 | `GND` | Ground | Common return |
+| 20 | `D2` / `RGB` | GPIO0 | WS2812 data (`NEOP_DIN`) |
+| 21 | `D3` / `BOOT` | GPIO28 | BOOT button; strapping pin |
+| 22 | `D4` | GPIO9 | Digital I/O |
+| 23 | `D5` | GPIO23 | microSD chip select; optional MAX17048 `ALERT` |
+| 24 | `D6` | GPIO24 | Digital I/O; optional MAX17048 `QSTRT` |
+| 25 | `D7` | GPIO25 | Digital I/O; optional BQ24074 `PGOOD`; strapping pin |
+| 26 | `D8` | USB D- | Same net as USB-C D- (GPIO13 through 22 Ω R9) |
+| 27 | `D9` | USB D+ | Same net as USB-C D+ (GPIO14 through 22 Ω R10) |
+| 28 | `D10` / `SS` | GPIO10 | SPI chip select; J20 |
+| 29 | `D11` / `MOSI` | GPIO7 | SPI MOSI; microSD CMD; J20; strapping pin |
+| 30 | `D12` / `MISO` | GPIO26 | SPI MISO; microSD DAT0; J20; strapping pin |
 
-### Onboard Fixed Connections
+Two schematic net labels differ from the connections drawn at the header:
 
-| Subsystem | RP2350A GPIO / bus |
-|---|---|
-| PSRAM chip select | GPIO0 |
-| microSD CLK, CMD, DAT0–DAT3 | GPIO2, GPIO3, GPIO4, GPIO5, GPIO6, GPIO7 |
-| PDM microphone CLK, DATA | GPIO10, GPIO11 |
-| QWIIC SDA, SCL | GPIO24, GPIO25 |
-| BMI270 SDA, SCL | GPIO8, GPIO9 |
-| W25Q128 QSPI flash | Dedicated QSPI interface |
+- **`D2`:** IC1 GPIO8 carries the net label `D2`, but header position 20
+  (`D2`) is wired to `NEOP_DIN` / GPIO0. No other connection is shown for the
+  GPIO8 net; treat GPIO8 as unassigned until the PCB is verified.
+- **`A6`:** the net is named `A6/GPIO4/TOUCH4`, but it connects to IC1 pin 15,
+  which is GPIO6. GPIO4 is `A2` / `D16` (pin 13). The ESP32-C5 has no touch
+  sensor, so `TOUCH4` does not apply.
+
+### Interfaces
+
+| Interface | Signal | Board label | GPIO | Notes |
+|---|---|---|---:|---|
+| UART0 | RX | `D0` | GPIO12 | |
+| UART0 | TX | `D1` | GPIO11 | 499 Ω series resistor R3 |
+| SPI | SS / CS | `D10` | GPIO10 | Also J20 pin 4 |
+| SPI | MOSI | `D11` | GPIO7 | Shared with microSD and J20 |
+| SPI | MISO | `D12` | GPIO26 | Shared with microSD and J20 |
+| SPI | SCK | `D13` | GPIO27 | Shared with microSD, J20, and `BUILTIN2` LED |
+| microSD | CS | `D5` | GPIO23 | Separate chip select from `D10` |
+| Sensor I2C (`SDA_SENSOR`) | SDA | `SDA` / `D18` | GPIO2 | Onboard sensors through solder jumper; 4.7 kΩ pull-up |
+| Sensor I2C (`SCL_SENSOR`) | SCL | `SCL` / `D19` | GPIO3 | Onboard sensors through solder jumper; 4.7 kΩ pull-up |
+| QWIIC I2C | SDA | `A1` / `D15` | GPIO1 | J1 pin 3; no onboard pull-up |
+| QWIIC I2C | SCL | `A6` / `D21` | GPIO6 | J1 pin 4; no onboard pull-up |
+| USB | D- | `D8` | GPIO13 | Native USB; 22 Ω R9 |
+| USB | D+ | `D9` | GPIO14 | Native USB; 22 Ω R10 |
+
+The `SDA` / `SCL` edge pads are the sensor bus, not a separate external bus:
+any device connected there shares the bus with the five onboard I2C devices.
+QWIIC is an independent bus on GPIO1 and GPIO6.
+
+### Analog Inputs
+
+| Analog label | Digital label | GPIO | ADC channel | Shared use |
+|---|---|---:|---|---|
+| `A1` | `D15` | GPIO1 | ADC1_CH0 | QWIIC SDA |
+| `A2` | `D16` | GPIO4 | ADC1_CH3 | — |
+| `A3` | `D17` | GPIO5 | ADC1_CH4 | — |
+| `A4` / `SDA` | `D18` | GPIO2 | ADC1_CH1 | Sensor I2C SDA |
+| `A5` / `SCL` | `D19` | GPIO3 | ADC1_CH2 | Sensor I2C SCL |
+| `A6` | `D21` | GPIO6 | ADC1_CH5 | QWIIC SCL; optional VCNL4040 `INT` |
+
+The Nano `A0` and `A7` positions carry `VBAT` and `NEOPIXEL DOUT` and are not
+analog inputs. `A4`/`A5` and `A1`/`A6` are usable as analog inputs only while
+the corresponding I2C bus is not in use.
+
+### Board Resources
+
+| Resource | Signal / GPIO | Bus | I2C address | Notes |
+|---|---|---|---|---|
+| Native USB | GPIO13 / GPIO14 | USB Serial/JTAG | — | `D8` / `D9` |
+| BOOT button | GPIO28 | — | — | `D3`; strapping pin |
+| UART0 | GPIO11 / GPIO12 | UART | — | `D1` / `D0` |
+| NeoPixel in | GPIO0 (`NEOP_DIN`) | — | — | LED1 WS2812 1010; `D2` |
+| NeoPixel out | LED1 `DO` (`NEOP_DO`) | — | — | Header position 11 through solder jumper |
+| Flash | GPIO15–GPIO18, GPIO20–GPIO22 | SPI0/1 | — | BY25Q64; not available as GPIO |
+| PSRAM | In package | SPI0/1 | — | 8 MB, ESP32-C5HR8 |
+| microSD | GPIO27, GPIO7, GPIO26, GPIO23 | SPI | — | CS on `D5` |
+| QWIIC | GPIO1 / GPIO6 | QWIIC I2C | — | J1 |
+| Battery monitor | GPIO2 / GPIO3 | Sensor I2C | `0x36` | MAX17048G+T10 |
+| Light / proximity | GPIO2 / GPIO3 | Sensor I2C | `0x60` | VCNL4040M3OE |
+| Temperature / RH | GPIO2 / GPIO3 | Sensor I2C | `0x44` | FHT40-DD-TR (SHT40 in schematic); verify address for FHT40 |
+| Pressure | GPIO2 / GPIO3 | Sensor I2C | `0x5C` | LPS22HBTR (LPS22DFTR in schematic); `SA0` to GND |
+| Magnetometer | GPIO2 / GPIO3 | Sensor I2C | `0x30` | MMC5603NJ |
+| RF | `ANT_2G` (pin 42), `ANT_5G` (pin 48) | — | — | U1 diplexer to J2 |
 
 ## Dimensions
 
 A controlled dimension drawing and mounting-hole coordinates are not present
-in the supplied V1.3 package. Do not derive dimensions from the rendered board
+in the available V1.2.3 package. Do not derive dimensions from rendered board
 images.
 
 ## Topology
@@ -113,16 +181,17 @@ images.
 ```text
 USB-C / VIN / battery
           |
-   power and charging
+   BQ24074 power path
           |
-        3.3 V
+   SGM6029 buck -> 3.3 V
           |
-       RP2350A
-   +------+------+------+-------+-------+
-   |      |      |      |       |       |
- QSPI   PSRAM  SDIO    I2C     PDM    GPIO/HSTX
- flash          |      BMI270   mic    + QWIIC
-              microSD
+     ESP32-C5HR8 (8 MB PSRAM in package)
+   +------+--------+--------+-------+---------+
+   |      |        |        |       |         |
+ QSPI    RF      I2C       SPI    WS2812    GPIO
+ flash  diplexer  sensors  microSD  RGB     + QWIIC
+         + J2     + fuel    + J20
+                  gauge
 ```
 
 The diagram shows functional relationships only; it is not an electrical
@@ -130,46 +199,52 @@ power-path specification.
 
 ## Pin & Connector Layout
 
-- **USB-C:** USB data and nominal USB VBUS entry.
-- **J1 QWIIC:** four positions carrying GND, 3.3 V, GPIO24/SDA, and
-  GPIO25/SCL. Cable orientation is not specified by a controlled drawing.
-- **J5 HSTX:** 22-position FFC/FPC connector exposing D0–D7, A0, A1,
-  GPIO24/SDA, GPIO25/SCL, 3.3 V, and return pins according to the schematic.
-  A complete pin-number table is not included in the technical documentation.
-- **microSD:** four-bit SDIO connection (CLK, CMD, DAT0–DAT3).
-- **JP1 battery:** two-position battery connector; polarity is shown on the
-  bottom side. Compatible batteries and cables are not specified.
-- **SWD pads:** `SWDIO`, `SWCLK`, 3.3 V, and GND test/programming pads are
-  visible on the bottom side.
+- **USB-C:** native USB data (GPIO13/GPIO14) and nominal USB VBUS entry
+  through Schottky diode D1.
+- **J1 QWIIC:** four positions carrying GND, 3.3 V, GPIO1/SDA, and
+  GPIO6/SCL. Cable orientation is not specified by a controlled drawing.
+- **J20 SPI:** six-position, 1 mm SH connector carrying SCK (GPIO27), MOSI
+  (GPIO7), MISO (GPIO26), SS (GPIO10), 3.3 V, and GND.
+- **J2 RF:** coaxial antenna connector shared by the 2.4 GHz and 5 GHz paths
+  through the U1 diplexer. No onboard antenna is listed in the BOM.
+- **microSD:** SPI connection (CLK, CMD, DAT0, DAT3/CS); DAT1 and DAT2 are not
+  connected.
+- **JP1 / J3 battery:** PH 2.0 mm and 1.25 mm two-position connectors wired in
+  parallel to `VBAT`. Compatible batteries and cables are not specified.
 
 ## Functional Description
 
-The RP2350A boots from the external W25Q128 QSPI flash. APS6404L PSRAM is
-connected to GPIO0 and the QSPI data/clock nets shown in the schematic. The
-BMI270 uses the GPIO8/GPIO9 I2C bus; the separate QWIIC connector uses
-GPIO24/GPIO25. The microSD socket is wired for four-bit SDIO. The ICS-41350
-provides onboard PDM audio on GPIO10/GPIO11. Three WS2812-compatible LEDs form
-a chain driven from GPIO1.
+The ESP32-C5HR8 boots from the external BY25Q64 64 Mbit flash connected to the
+dedicated SPI0/1 flash pins, and provides 8 MB of in-package PSRAM. A 48 MHz
+crystal (XTAL1) is the main clock source. The 2.4 GHz and 5 GHz RF ports are
+combined by the U1 diplexer and routed to the J2 coaxial connector; 0 Ω links
+and unpopulated positions form the matching networks.
 
-USB VBUS and `VIN` feed the documented power-path components, while an
-MCP73831 charge controller and external battery connection support a
-single-cell battery design. Module-level input ranges, charge current, rail
-current, and source-selection behavior are not specified at module level.
+The MAX17048, MMC5603NJ, humidity/temperature sensor, pressure sensor, and
+VCNL4040 share the `SDA_SENSOR` / `SCL_SENSOR` bus, which connects to GPIO2 and
+GPIO3 through solder jumpers. The QWIIC connector uses a separate GPIO1/GPIO6
+bus. The microSD socket uses SPI signals shared with the J20 connector and the
+`D11`–`D13` header positions. One WS2812 LED is driven from GPIO0.
+
+USB VBUS and `VIN` are combined through Schottky diodes into the `+5V` input of
+the BQ24074, whose power-path output (`BMS_OUT`) feeds the SGM6029 buck
+regulator. The schematic annotates a 250 mA charge current (`ICHRG=250mA`).
+Module-level input ranges, rail current, and source-selection behavior are not
+specified at module level.
 
 ## Applications
 
-- Embedded control and peripheral evaluation
-- Motion and audio data acquisition
+- Dual-band Wi-Fi 6, Bluetooth LE, Zigbee, and Thread prototyping
+- Environmental monitoring (pressure, humidity, temperature, light)
+- Battery-powered IoT nodes with fuel gauging
 - microSD data logging
-- HSTX graphics and display experiments
-- RP2350 memory and multicore development
+- Magnetometer and proximity-based user interfaces
 - I2C sensor integration through QWIIC
 
 ## References
 
-- [UNIT PULSAR RP2350 repository](https://github.com/UNIT-Electronics-MX/unit_pulsar_rp2350a)
-- [Technical wiki](https://github.com/UNIT-Electronics-MX/unit_pulsar_rp2350a/wiki)
-- [C++ examples](https://github.com/UNIT-Electronics-MX/unit_pulsar_rp2350a/tree/main/software/cpp_examples)
-- [Official RP2350 datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)
-- [Product Reference](https://unit-electronics-mx.github.io/unit_pulsar_rp2350a/hardware/unit_product_reference_v_0_1_0_pulsar_rp2350a.pdf)
-- [V1.3 schematic](https://github.com/UNIT-Electronics-MX/unit_pulsar_rp2350a/blob/main/hardware/unit_sch_v_1_3_0_pulsar_rp2350a.pdf)
+- [UNIT PULSAR ESP32-C5 repository](https://github.com/UNIT-Electronics-MX/unit_pulsar_esp32_c5)
+- [Technical wiki](https://github.com/UNIT-Electronics-MX/unit_pulsar_esp32_c5/wiki)
+- [Official ESP32-C5 datasheet](https://documentation.espressif.com/esp32-c5_datasheet_en.pdf)
+- [Product Reference](https://unit-electronics-mx.github.io/unit_pulsar_esp32_c5/hardware/unit_product_reference_v_0_1_0_pulsar_esp32_c5.pdf)
+- [V1.2.3 schematic](https://github.com/UNIT-Electronics-MX/unit_pulsar_esp32_c5/blob/main/hardware/unit_sch_v_1_2_3_ue0134_pulsar_esp32_c5.pdf)

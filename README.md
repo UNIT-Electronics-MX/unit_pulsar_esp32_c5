@@ -1,12 +1,13 @@
-# UNIT PULSAR RP2350 Development Board
+# UNIT PULSAR ESP32C5 Development Board
 
 
-The UNIT PULSAR RP2350 is a multi-interface development board in the UNIT
-DevLab ecosystem, based on the Raspberry Pi RP2350A microcontroller. The
-V1.3 hardware integrates
-external QSPI flash and PSRAM, motion sensing, PDM audio, microSD storage,
-addressable RGB indicators, USB-C, QWIIC I²C, battery support, and a 22-pin
-HSTX expansion connector.
+The UNIT PULSAR ESP32C5 is a multi-interface development board in the UNIT
+DevLab ecosystem, based on the Espressif ESP32-C5HR8 microcontroller with
+8 MiB of in-package PSRAM. The hardware integrates external QSPI flash,
+environmental and magnetic sensing, microSD storage, an addressable RGB
+indicator, USB-C, QWIIC I²C, Li-ion battery charging with fuel gauge, and an
+RF coaxial antenna connector. It supports 2.4 and 5 GHz dual-band Wi-Fi 6,
+Bluetooth LE 5, Zigbee 3.0 and Thread 1.4.
 
 <div align="center">
   <img src="hardware/resources/unit_top_v_1_3_0_pulsar_rp2350a.png" width="450px" alt="UNIT PULSAR RP2350 Development Board">
@@ -30,25 +31,25 @@ HSTX expansion connector.
 
 | Feature | Description |
 |---|---|
-| Microcontroller | Raspberry Pi RP2350A |
-| Program Memory | W25Q128JVPIQ 128 Mbit (16 MiB) QSPI flash |
-| External Memory | APS6404L-3SQR-ZR 8 MiB PSRAM |
-| Motion Sensor | BMI270 six-axis IMU |
-| Audio Input | ICS-41350 digital PDM microphone |
-| Storage | 47309-2651 microSD holder on a four-bit SDIO connection |
-| Indicators | Three WS2812-compatible RGB LEDs, user LED, power LED, and charge LED |
-| Connections | USB-C, QWIIC I²C, battery, SWD, edge pads, and 22-pin HSTX connector |
-| Hardware Revision | V1.3.0 |
+| Microcontroller | ESP32-C5HR8 RISC-V SoC, dual-band Wi-Fi 6, Bluetooth LE 5, 802.15.4 |
+| Program Memory | BY25Q64ES 64 Mbit (8 MiB) QSPI NOR flash |
+| External Memory | 8 MiB PSRAM integrated in the ESP32-C5HR8 package |
+| Sensors | LPS22HB pressure, FHT40 humidity/temperature, VCNL4040 proximity/light, MMC5603NJ magnetometer |
+| Power | BQ24074 Li-ion charger, MAX17048 fuel gauge, SGM6029 buck regulator |
+| Storage | 47309-2651 microSD holder |
+| Indicators | One WS2812 1010 RGB LED, user LED, power LED, and charge LED |
+| Connections | USB-C, QWIIC I²C, battery (PH 2.0), 6-pin SH 1 mm, RF coaxial antenna, and edge pads |
+| Hardware Revision | Unspecified |
 
 </div>
 
 ## Applications
 
-- **Firmware Development:** RP2350 application and peripheral prototyping.
-- **Data Logging:** Motion, audio, and sensor acquisition with microSD storage.
-- **Embedded Graphics:** HSTX display and video experiments.
-- **External Memory:** Large-buffer prototypes using the onboard PSRAM.
-- **Education:** Digital I/O, ADC, I²C, SDIO, PDM, and multicore learning.
+- **Firmware Development:** ESP32-C5 application and peripheral prototyping.
+- **IoT Connectivity:** Dual-band Wi-Fi 6, Bluetooth LE, Zigbee and Thread nodes.
+- **Environmental Monitoring:** Pressure, humidity, temperature, and light logging with microSD storage.
+- **Battery-Powered Devices:** Portable prototypes with Li-ion charging and fuel gauging.
+- **Education:** Digital I/O, ADC, I²C, SPI, wireless, and RISC-V learning.
 
 ## Resources
 

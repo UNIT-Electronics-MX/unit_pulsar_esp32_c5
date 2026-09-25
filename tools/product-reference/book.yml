@@ -1,11 +1,11 @@
 ---
-title: "UNIT PULSAR RP2350 SENSE"
+title: "UNIT PULSAR ESP32-C5"
 subtitle: "Product Reference Manual"
 author: "UNIT Electronics"
 lang: en-US
-mpn: "UE0103"
+mpn: "UE0134"
 version: "0.1.0"
-date: "2026-08-03"
+date: "2026-09-24"
 toc-title: "Contents"
 
 # The order of this list determines the chapter order in the final document.

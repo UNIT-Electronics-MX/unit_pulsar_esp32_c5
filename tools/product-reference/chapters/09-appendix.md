@@ -2,91 +2,103 @@
 
 ### **9.1 Schematic** {.section-page}
 
-The following three sheets are rendered from `unit_sch_v_1_3_0_pulsar_rp2350a.pdf`. The original PDF remains the authoritative electrical schematic for hardware revision V1.3.0.
+The following two sheets are rendered from
+`unit_sch_v_1_2_3_ue0134_pulsar_esp32_c5.pdf`. The original PDF remains the
+authoritative electrical schematic for hardware revision V1.2.3.
 
 <div class="schematic-page">
 
-#### **9.1.1 Processor, Memory, USB, I/O, and Power Entry**
+#### **9.1.1 I/Os, USB-C, Charger, 3.3 V Regulator, Antenna, ESP32-C5, Flash, and LEDs**
 
-![](hardware/resources/unit_schematic_v_1_3_0_pulsar_rp2350a_sheet_1.png){width=7.2in}
+![](hardware/resources/unit_schematic_v_1_2_3_pulsar_esp32_c5_sheet_1.png){width=7.2in}
 
 </div>
 
 <div class="schematic-page">
 
-#### **9.1.2 microSD, BMI270, HSTX Connector, and PDM Microphone**
+#### **9.1.2 Battery Monitor, microSD, and Sensors**
 
-![](hardware/resources/unit_schematic_v_1_3_0_pulsar_rp2350a_sheet_2.png){width=7.2in}
-
-</div>
-
-<div class="schematic-page">
-
-#### **9.1.3 3.3 V Regulator and Battery Protection**
-
-![](hardware/resources/unit_schematic_v_1_3_0_pulsar_rp2350a_sheet_3.png){width=7.2in}
+![](hardware/resources/unit_schematic_v_1_2_3_pulsar_esp32_c5_sheet_2.png){width=7.2in}
 
 </div>
 
 ### **9.2 Technical References** {.section-page}
 
-The documentation set for the UNIT PULSAR RP2350A is organized around the following technical sources:
+The documentation set for the UNIT PULSAR ESP32-C5 is organized around the
+following technical sources:
 
-1. The hardware V1.3.0 schematic defines board connectivity, component designators, power architecture, and electrical implementation.
+1. The hardware V1.2.3 schematic defines board connectivity, component
+   designators, power architecture, and electrical implementation.
 
-2. The official Raspberry Pi RP2350 datasheet defines RP2350A device-level electrical characteristics, processor capabilities, GPIO behavior, ADC operation, and HSTX functionality.
+2. The bill of materials defines the assembled part numbers.
 
-3. The UNIT Electronics Wiki provides setup procedures, peripheral usage documentation, application examples, and software workflows.
+3. The official Espressif ESP32-C5 datasheet defines device-level electrical
+   characteristics, processor capabilities, GPIO behavior, strapping pins, ADC
+   operation, and radio functionality.
 
-4. The repository C++ examples provide implementation references for the board peripherals and supported software APIs.
+4. The UNIT Electronics Wiki provides setup procedures, peripheral usage
+   documentation, application examples, and software workflows.
 
 ### **9.3 Design and Application Notes** {.section-page}
 
-The following characteristics depend on the final application, firmware configuration, connected peripherals, or mechanical integration:
+The following characteristics depend on the final application, firmware
+configuration, connected peripherals, or mechanical integration:
 
-- Total board current consumption varies with processor activity, clock configuration, enabled peripherals, RGB LED brightness, microSD activity, PDM audio acquisition, PSRAM usage, HSTX video output, and external loads.
-- Available current for external 3.3 V devices depends on the portion of the AP2112K 600 mA output capability consumed by the board itself.
-- Maximum validated interface rates may depend on firmware configuration, connected devices, cable characteristics, and signal integrity.
-- Final microphone acoustic performance depends on enclosure geometry, acoustic-port clearance, and mechanical integration.
-- Thermal performance and maximum component temperatures depend on workload, ambient conditions, airflow, enclosure design, and external loading.
-- Connector insertion clearance and maximum component-height requirements should be verified for the final carrier or enclosure design.
+- Total board current consumption varies with CPU activity, radio mode and
+  transmit power, enabled peripherals, RGB LED brightness, microSD activity,
+  and external loads.
+- Available current for external 3.3 V devices depends on the portion of the
+  SGM6029 1 A output capability consumed by the board itself.
+- Radiated RF performance depends on the antenna, cable, enclosure, and the
+  populated matching network.
+- Environmental-sensor accuracy depends on self-heating, airflow, and
+  enclosure design.
+- Thermal performance and maximum component temperatures depend on workload,
+  ambient conditions, airflow, enclosure design, and external loading.
 
 ### **9.4 Document Control** {.section-page}
 
 | Field | Value |
 |---|---|
-| Product | UNIT PULSAR RP2350A |
-| SKU | UE0103 |
+| Product | UNIT PULSAR ESP32-C5 |
+| SKU | UE0134 |
 | Product family | UNIT DevLab ecosystem |
-| Hardware revision | V1.3.0 |
+| Hardware revision | V1.2.3 |
 | Product Reference | Version 0.1.0 |
-| Publication date | 2026-08-03 |
+| Publication date | 2026-09-24 |
 
 #### **9.5 Source Notes** {.section-page}
 
-- The hardware V1.3.0 schematic title block contains the text `PULSAR RP230A` and revision `1.0.0`. This Product Reference uses the released product identification UNIT PULSAR RP2350A and hardware revision V1.3.0.
+- The schematic title block shows `REV: 1.2.0` on sheet 1 and `REV: 1.2.3` on
+  sheet 2; the schematic file name uses V1.2.3, and the revision history is
+  labeled Version 1.2. This Product Reference uses V1.2.3.
 
-- The microSD hardware exposes a complete four-bit SDIO interface. Current UNIT Electronics Wiki examples use the SPI-compatible `CLK`, `CMD`, `DAT0`, and `DAT3` subset.
+- The schematic names the humidity sensor `SHT40` and the pressure sensor
+  `LPS22DFTR`; the bill of materials specifies `FHT40-DD-TR` and `LPS22HBTR`.
+  This Product Reference follows the bill of materials for part numbers.
 
-- `D8` and `D9` expose the RP2350A native USB D- and D+ signals through the board routing and must not be treated as conventional general-purpose digital I/O.
+- The schematic revision history states that R12 was changed to 1.5 kΩ for an
+  approximately 1 A USB charging current. The schematic and bill of materials
+  show R12 = 1.1 kΩ on `ILIM` (input current limit) and R13 = 3.57 kΩ on
+  `ISET`, with the annotation `ICHRG=250mA`. This Product Reference uses the
+  schematic and bill-of-materials values.
 
-- `D13` / `BUILTIN1` is connected to GPIO22 on hardware V1.3.0.
+- The J3 part number is `653102124022` in the schematic and `653102131822` in
+  the bill of materials.
+
+- GPIO8 carries the net label `D2` at IC1, but no header connection is shown
+  for that net. Header position `D2` connects to GPIO0 (`NEOP_DIN`).
+
+- The net connected to header position 10 and QWIIC pin 4 is named
+  `A6/GPIO4/TOUCH4`, but it connects to IC1 pin 15 (GPIO6). The ESP32-C5 has no
+  touch sensor. This Product Reference uses GPIO6.
+
+- The label `D21` for header position 10 is taken from the board pinout
+  artwork; the schematic shows only `A6`.
+
+- The ESP32-C5 does not provide an SD host controller; the microSD socket uses
+  SPI mode and `DAT1`/`DAT2` are not connected.
 
 ### **9.6 Hardware Errata** {.section-page}
 
-#### **SWD VCC and GND Silkscreen Labels**
-
-On hardware revision V1.3.0, the `VCC` and `GND` silkscreen labels printed beside the SWD debug pads are reversed.
-
-Use the following corrected electrical mapping when connecting an SWD debug probe:
-
-| Printed silkscreen label | Actual electrical connection |
-|---|---|
-| `VCC` | `GND` |
-| `GND` | `3.3 V` reference |
-
-Verify the SWD pad connections before connecting a debug probe.
-
-Following the incorrect silkscreen labels may reverse the probe power-reference and ground connections and may damage the board or debug equipment.
-
-Refer to Section 4.8 for SWD connection guidance.
+No hardware errata have been recorded for revision V1.2.3.

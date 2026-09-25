@@ -1,30 +1,31 @@
 ## **Description**
 
-The UNIT PULSAR RP2350 is a multi-interface development board in the UNIT
-DevLab ecosystem, built around the Raspberry Pi RP2350A microcontroller. The V1.3 design
-combines external QSPI flash and PSRAM with motion sensing, PDM audio, microSD,
-USB-C, battery support, addressable RGB indicators, QWIIC I2C, and a 22-pin
-HSTX expansion connector.
-
-![](hardware/resources/unit_top_v_1_3_0_pulsar_rp2350a.png){width=3.0in}
+The UNIT PULSAR ESP32-C5 is a multi-interface development board in the UNIT
+DevLab ecosystem, built around the Espressif ESP32-C5HR8 SoC with 8 MB of
+in-package PSRAM. The V1.2.3 design combines dual-band 2.4/5 GHz Wi-Fi 6,
+Bluetooth LE, and IEEE 802.15.4 connectivity with external QSPI flash,
+environmental and magnetic sensing, microSD, USB-C, Li-ion charging with fuel
+gauging, an addressable RGB indicator, QWIIC I2C, and an RF coaxial antenna
+connector.
 
 ### **Applications**
 
-- RP2350 firmware and peripheral prototyping
-- Motion and PDM audio acquisition
+- Dual-band Wi-Fi 6, Bluetooth LE, Zigbee, and Thread prototyping
+- Environmental monitoring and data logging
+- Battery-powered IoT nodes with fuel gauging
+- Magnetometer and proximity-based user interfaces
 - microSD data logging
-- HSTX graphics experiments
-- External-memory and multicore applications
 - Education and subsystem validation
 
 ### **Hardware Features**
 
-- RP2350A microcontroller with external W25Q128 128 Mbit QSPI flash
-- APS6404L-3SQR-ZR 8 MiB PSRAM
-- BMI270 six-axis inertial measurement unit
-- ICS-41350 digital PDM microphone
-- Four-bit SDIO microSD connection
-- Three WS2812-compatible RGB LEDs plus power, charge, and user indicators
-- USB-C, QWIIC, battery, edge-pad, SWD, and HSTX connections
-
-
+- ESP32-C5HR8 SoC: 32-bit RISC-V up to 240 MHz, 384 KB HP SRAM, 8 MB PSRAM
+- BY25Q64ES 64 Mbit (8 MiB) quad SPI NOR flash
+- 2.4/5 GHz RF path through a diplexer to a coaxial antenna connector
+- LPS22 pressure, FHT40 humidity/temperature, VCNL4040 proximity/light, and
+  MMC5603NJ magnetometer sensors
+- BQ24074 Li-ion charger with power path and MAX17048 fuel gauge
+- SGM6029 1 A buck regulator for the 3.3 V rail
+- microSD socket on SPI signals
+- One WS2812 RGB LED plus power, charge, and user indicators
+- USB-C, QWIIC, 6-pin SPI, battery, and Nano-style edge-pad connections

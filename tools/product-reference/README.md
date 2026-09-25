@@ -1,9 +1,9 @@
 # Product Reference build
 
-The UNIT PULSAR RP2350 Product Reference source is maintained in Markdown under
+The UNIT PULSAR ESP32-C5 Product Reference source is maintained in Markdown under
 `chapters/`. Document metadata and chapter order are defined in `book.yml`.
-Version 0.1.0 is based on the V1.3 schematic, official RP2350 component
-datasheet, and technical wiki.
+Version 0.1.0 is based on the V1.2.3 schematic, bill of materials, and
+official ESP32-C5 component datasheet.
 
 ## Local validation build
 
@@ -23,10 +23,10 @@ repository:
 The build produces:
 
 ```text
-unit_product_reference_v_0_1_0_pulsar_rp2350a.md
-unit_product_reference_v_0_1_0_pulsar_rp2350a.docx
-unit_product_reference_v_0_1_0_pulsar_rp2350a.html
-unit_product_reference_v_0_1_0_pulsar_rp2350a.pdf
+unit_product_reference_v_0_1_0_pulsar_esp32_c5.md
+unit_product_reference_v_0_1_0_pulsar_esp32_c5.docx
+unit_product_reference_v_0_1_0_pulsar_esp32_c5.html
+unit_product_reference_v_0_1_0_pulsar_esp32_c5.pdf
 ```
 
 The build prepares temporary PNG/JPEG copies with a maximum dimension of
