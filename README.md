@@ -10,8 +10,8 @@ RF coaxial antenna connector. It supports 2.4 and 5 GHz dual-band Wi-Fi 6,
 Bluetooth LE 5, Zigbee 3.0 and Thread 1.4.
 
 <div align="center">
-  <img src="hardware/resources/unit_top_v_1_2_3_pulsar_esp32_c5.png" width="450px" alt="UNIT PULSAR ESP32-C5 Development Board">
-  <p><em>UNIT PULSAR ESP32-C5 Development Board</em></p>
+  <img src="tools/product-reference/assets/pulsar_c5_pinout_.png" width="450px" alt="UNIT PULSAR ESP32-C5 pinout preview">
+  <p><em>UNIT PULSAR ESP32-C5 pinout preview (2D)</em></p>
 </div>
 
 <div align="center">
