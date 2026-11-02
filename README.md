@@ -54,6 +54,7 @@ Bluetooth LE 5, Zigbee 3.0 and Thread 1.4.
 
 ## Resources
 
+- [Hardware guide](hardware/README.md)
 - [Schematic Diagram](https://github.com/UNIT-Electronics-MX/unit_pulsar_esp32_c5/blob/main/hardware/unit_sch_v_1_2_3_ue0134_pulsar_esp32_c5.pdf)
 - [Pinout Diagram](tools/product-reference/assets/pulsar_c5_pinout_.png)
 - Getting Started Guide: pending publication.
