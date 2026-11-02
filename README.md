@@ -18,10 +18,10 @@ Bluetooth LE 5, Zigbee 3.0 and Thread 1.4.
 
 ### Quick Setup
 
-[<img src="https://img.shields.io/badge/Product%20Wiki-blue?style=for-the-badge" alt="Product Wiki">](https://github.com/UNIT-Electronics-MX/unit_pulsar_esp32_c5/wiki)
-[<img src="https://img.shields.io/badge/Datasheet-green?style=for-the-badge" alt="Datasheet">](https://unit-electronics-mx.github.io/unit_pulsar_esp32_c5/hardware/unit_product_reference_v_1_2_3_pulsar_esp32_c5.pdf)
-[<img src="https://img.shields.io/badge/Buy%20Now-orange?style=for-the-badge" alt="Buy Now">](https://uelectronics.com/)
-[<img src="https://img.shields.io/badge/Getting%20Started-purple?style=for-the-badge" alt="Getting Started">](https://github.com/UNIT-Electronics-MX/unit_pulsar_esp32_c5/wiki/0-Getting-Started)
+<img src="https://img.shields.io/badge/Product%20Wiki-pending-lightgrey?style=for-the-badge" alt="Product Wiki pending">
+[<img src="https://img.shields.io/badge/Datasheet-green?style=for-the-badge" alt="Datasheet">](docs/hardware/unit_product_reference_v_0_1_0_pulsar_esp32_c5.pdf)
+<img src="https://img.shields.io/badge/Buy%20Now-pending-lightgrey?style=for-the-badge" alt="Buy Now pending">
+<img src="https://img.shields.io/badge/Getting%20Started-pending-lightgrey?style=for-the-badge" alt="Getting Started pending">
 
 </div>
 
@@ -55,22 +55,12 @@ Bluetooth LE 5, Zigbee 3.0 and Thread 1.4.
 ## Resources
 
 - [Schematic Diagram](https://github.com/UNIT-Electronics-MX/unit_pulsar_esp32_c5/blob/main/hardware/unit_sch_v_1_2_3_ue0134_pulsar_esp32_c5.pdf)
-- [Pinout Diagram](https://github.com/UNIT-Electronics-MX/unit_pulsar_esp32_c5/blob/main/hardware/README.md#pinout)
-- [Getting Started Guide](https://github.com/UNIT-Electronics-MX/unit_pulsar_esp32_c5/wiki/0-Getting-Started)
-- [C++ Examples](https://github.com/UNIT-Electronics-MX/unit_pulsar_esp32_c5/tree/main/software/cpp_examples)
+- [Pinout Diagram](tools/product-reference/assets/pulsar_c5_pinout_.png)
+- Getting Started Guide: pending publication.
+- C++ examples: pending publication.
 
 ## 📝 License
 
 All hardware and documentation in this project are licensed under the **MIT
 License**. See the [repository license](https://github.com/UNIT-Electronics-MX/unit_pulsar_esp32_c5/blob/main/LICENSE)
 for details. Third-party reference files may have separate terms.
-
-<div align="center">
-  <sub>Template created by UNIT Electronics</sub>
-</div>
-
-> **Documentation Note:**
-> Electrical limits, mechanical dimensions, and connector orientation not
-> defined by the V1.2.3 technical documentation are identified as unspecified.
-> The schematic title block identifies the board as `PULSAR ESP32 C5`,
-> SKU `UE0134`, revision `1.2.3`.
