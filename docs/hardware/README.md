@@ -2,10 +2,14 @@
 
 ## Hardware Scope
 
-This page summarizes the UNIT PULSAR ESP32-C5 board (MPN **UE0134**) from
+This page summarizes the UNIT PULSAR ESP32-C5 board from
 schematic revision V1.2.3 and the existing Product Reference source. Top and
 bottom board photographs and a controlled dimension drawing are not available
 for that revision. The 2D pinout remains the available board preview.
+
+| Field | Value |
+|---|---|
+| MPN | UE0134 |
 
 ## Power Tree
 
@@ -46,7 +50,6 @@ ESP32-C5HR8 (in-package PSRAM)
 
 - Product name: **UNIT PULSAR ESP32-C5**.
 - Product family: **UNIT DevLab ecosystem**.
-- MPN: **UE0134**.
 - Existing source assets retain their published filenames and revisions.
 - Generated Product Reference files use
   `unit_product_reference_v_0_1_0_pulsar_esp32_c5.*`.
