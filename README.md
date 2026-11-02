@@ -31,6 +31,7 @@ Bluetooth LE 5, Zigbee 3.0 and Thread 1.4.
 
 | Feature | Description |
 |---|---|
+| MPN | UE0134 |
 | Microcontroller | ESP32-C5HR8 RISC-V SoC, dual-band Wi-Fi 6, Bluetooth LE 5, 802.15.4 |
 | Program Memory | BY25Q64ES 64 Mbit (8 MiB) QSPI NOR flash |
 | External Memory | 8 MiB PSRAM integrated in the ESP32-C5HR8 package |
