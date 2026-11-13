@@ -75,13 +75,27 @@ ESP32-C5HR8 (in-package PSRAM)
 | J20 | SM06B-SRSS-TB | Six-position SPI expansion connector |
 | S1, S2 | 1TS026A-1600-0553-CT | BOOT and RESET buttons |
 
+### Schematic
+
 [Revision V1.2.3 electrical schematic](unit_sch_v_1_2_3_ue0134_pulsar_esp32_c5.pdf)
 
 Product-specific top and bottom board photographs are pending publication.
 
-## Pinout
+![UNIT PULSAR ESP32 C5 top view](./resources/unit_top_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png)
+![UNIT PULSAR ESP32 C5 bottom view](./resources/unit_btm_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png)
 
-![UNIT PULSAR ESP32-C5 2D pinout](../tools/product-reference/assets/pulsar_c5_pinout_.png)
+## Pinout
+- [Top pinout](./unit_top_pinout_v1_2_3_ue0134_devlab_pulsar_esp32_c5_en.pdf)
+- [Bottom pinout](./unit_btm_pinout_v1_2_3_ue0134_devlab_pulsar_esp32_c5_en.pdf)
+<div align="center">
+
+<a href="./unit_pinout_v1_2_3_ue0134_devlab_pulsar_esp32_c5_en.pdf">
+  <img src="./resources/unit_pinout_v1_2_3_ue0134_devlab_pulsar_esp32_c5_en.png" width="500px">
+  <br/>Pinout
+</a>
+
+<br/><br/>
+</div>
 
 | Board label | ESP32-C5 connection | Function / status |
 |---|---|---|
@@ -111,8 +125,9 @@ and other schematic-label caveats are in the [Product Reference pinout source](.
 
 ## Dimensions
 
-A controlled dimension drawing and mounting-hole coordinates for V1.2.3 are
-not available. Do not derive dimensions from the 2D pinout image.
+- [Board dimensions preview](./resources/unit_dimensions_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png)
+- [Board dimensions PDF](./unit_dimensions_v1_2_3_ue0134_devlab_pulsar_esp32_c5.pdf)
+- [STEP model](./resources/mechanics/unit_3d_v1_2_3_ue0134_devlab_pulsar_esp32_c5.step)
 
 ## Topology
 
@@ -121,6 +136,7 @@ sensors and fuel gauge over I2C, microSD over SPI, and a WS2812 RGB LED. The
 QWIIC connector is on a separate I2C bus from the onboard sensors. See the
 [functional overview](../tools/product-reference/chapters/03-functional-overview.md)
 for the full component and solder-jumper mapping.
+- [Board topology](./resources/unit_topology_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png)
 
 ## Pin & Connector Layout
 
