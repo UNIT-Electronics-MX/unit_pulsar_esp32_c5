@@ -339,6 +339,26 @@ body {
   max-height: 235mm;
 }
 
+.pinout-page {
+  break-before: page;
+}
+
+.pinout-page + table {
+  break-before: page;
+}
+
+.pinout-page--first {
+  break-before: auto;
+}
+
+.pinout-page img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 228mm;
+  object-fit: contain;
+}
+
 h2 {
   margin: 0 0 6mm;
   padding-bottom: 3mm;

@@ -6,7 +6,17 @@ aliases depend on the selected board definition.
 
 ### **4.1 General Pinout** {.section-page}
 
-![UNIT PULSAR ESP32-C5 general pinout](tools/product-reference/assets/unit_pinout_v1_2_3_ue0134_devlab_pulsar_esp32_c5_en.png){width=7.2in}
+<div class="pinout-page pinout-page--first">
+
+![Top view pinout](tools/product-reference/assets/unit_top_pinout_v1_2_3_ue0134_devlab_pulsar_esp32_c5_en.png){height=8.4in}
+
+</div>
+
+<div class="pinout-page">
+
+![Bottom view pinout](tools/product-reference/assets/unit_btm_pinout_v1_2_3_ue0134_devlab_pulsar_esp32_c5_en.png){height=8.4in}
+
+</div>
 
 | Pos. | Board label | ESP32-C5HR8 | Primary board role | Shared resource |
 |---:|---|---:|---|---|

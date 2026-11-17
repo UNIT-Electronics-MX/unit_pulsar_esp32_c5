@@ -8,6 +8,8 @@ environmental and magnetic sensing, microSD, USB-C, Li-ion charging with fuel
 gauging, an addressable RGB indicator, QWIIC I2C, and an RF coaxial antenna
 connector.
 
+![](tools/product-reference/assets/unit_top_landscape_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png){width=3.5in}
+
 ### **Applications**
 
 - Dual-band Wi-Fi 6, Bluetooth LE, Zigbee, and Thread prototyping
