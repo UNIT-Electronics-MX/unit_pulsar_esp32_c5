@@ -6,8 +6,6 @@ one end, and QWIIC, J20, and RF connectors for expansion.
 
 ### **6.1 Component-side Envelope** {.section-page}
 
-Board photographs for revision V1.2.3 are not yet available.
-
 Adequate vertical and lateral clearance should be provided around the USB-C
 connector, pushbuttons, QWIIC and J20 connectors, RF connector, and other
 components. The edge pads must remain accessible when the board is mounted on
@@ -22,9 +20,14 @@ those measurements are used.
 
 ### **6.3 Board Dimensions** {.section-page}
 
-A controlled dimension drawing and mounting-hole coordinates for revision
-V1.2.3 are not yet available. Do not derive dimensions from rendered board
-images.
+![Board dimensions](tools/product-reference/assets/unit_dimensions_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png){width=5.5in}
+
+| Dimension | Value |
+|---|---:|
+| Board outline | 17.78 mm × 43.18 mm |
+| Mounting-hole spacing | 15.24 mm × 40.64 mm |
+| Mounting holes | 4 × Ø2 mm |
+| Edge-pad pitch | 2.54 mm |
 
 ### **6.4 Mechanical Integration Considerations** {.section-page}
 

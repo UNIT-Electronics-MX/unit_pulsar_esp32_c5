@@ -66,8 +66,8 @@ Hardware revision and documentation revision are identified independently.
 
 ### **1.4 Board Views** {.section-page}
 
-Top-side and bottom-side board photographs for revision V1.2.3 are not yet
-available. Refer to the schematic in Section 9.1 for component designators.
+![Top view](tools/product-reference/assets/unit_top_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png){height=4.2in}
+![Bottom view](tools/product-reference/assets/unit_btm_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png){height=4.2in}
 
 ### **1.5 Handling** {.section-page}
 

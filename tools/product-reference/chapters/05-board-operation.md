@@ -64,9 +64,78 @@ errors easier to isolate.
 
 ### **5.5 C++ Example Collection** {.section-page}
 
-C++ examples for the ESP32-C5 revision are planned under
-`software/cpp_examples/`. The recommended bring-up sequence in Section 5.4
-defines the intended example coverage.
+The `software/cpp_examples/` directory contains 10 Arduino sketches that follow
+the bring-up sequence in Section 5.4:
+
+| Directory | Sketch | Hardware | Coverage |
+|---|---|---|---|
+| `01_basics/` | `chip_info_rgb` | Onboard | Chip model, flash, and PSRAM size; WS2812 color wheel |
+| `01_basics/` | `blink_boot_button` | Onboard | User LED on GPIO27; BOOT button on GPIO28 |
+| `02_adc/` | `adc_read` | Potentiometer on `A2` | Raw counts and calibrated millivolts on GPIO4 |
+| `03_ws2812/` | `rgb_mixer` | Onboard | WS2812 color and brightness from the serial monitor |
+| `04_i2c/` | `sensor_bus_scan` | Onboard | Sensor-bus scan on GPIO2/GPIO3 with device names |
+| `04_i2c/` | `qwiic_bmi270` | BMI270 on QWIIC | QWIIC scan on GPIO1/GPIO6 and BMI270 chip ID |
+| `05_microsd/` | `read_write` | microSD card | Mount, append, and read back a file |
+| `06_uart/` | `uart_loopback` | Jumper `TX0`–`RX0` | UART0 loopback on GPIO11/GPIO12 |
+| `07_wireless/` | `wifi_http` | DHT11, Wi-Fi network | 2.4/5 GHz Wi-Fi station and HTTP upload |
+| `07_wireless/` | `ble_touch` | TTP223B, phone | BLE GATT server with notifications |
+
+Compile the examples with **ESP32C5 Dev Module**, **USB CDC On Boot**
+enabled, 8 MB flash, and PSRAM enabled:
+
+```sh
+FQBN=esp32:esp32:esp32c5:CDCOnBoot=cdc,PSRAM=enabled,FlashSize=8M,PartitionScheme=default_8MB
+arduino-cli compile -u -p <port> --fqbn "$FQBN" software/cpp_examples/01_basics/blink_boot_button
+arduino-cli monitor -p <port> -c baudrate=115200
+```
+
+#### **Hello World: Blink and BOOT Button**
+
+The following sketch blinks the pink user LED (`BUILTIN2`, GPIO27) and
+increases the blink rate while the BOOT button (GPIO28) is held:
+
+```cpp
+#include <Arduino.h>
+
+constexpr uint8_t LED_PIN = 27;
+constexpr uint8_t BOOT_BUTTON = 28;
+
+uint32_t interval = 500;
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(LED_PIN, OUTPUT);
+  pinMode(BOOT_BUTTON, INPUT_PULLUP);
+  Serial.println("P1 ready: hold BOOT to blink faster");
+}
+
+void loop() {
+  const bool pressed = digitalRead(BOOT_BUTTON) == LOW;
+  const uint32_t wanted = pressed ? 100 : 500;
+  if (wanted != interval) {
+    interval = wanted;
+    Serial.printf("button %s, interval %lu ms\n",
+                  pressed ? "pressed" : "released", (unsigned long)interval);
+  }
+  digitalWrite(LED_PIN, !digitalRead(LED_PIN));
+  delay(interval);
+}
+```
+
+#### **Sensor Bus Scan**
+
+`sensor_bus_scan` lists the onboard I2C devices. With JP2 and JP3 closed, the
+expected serial output is:
+
+```text
+Scanning 0x08–0x77…
+  0x30  MMC5603 magnetometer
+  0x36  MAX17048 fuel gauge
+  0x44  FHT40 temperature & humidity
+  0x5C  LPS22 pressure
+  0x60  VCNL4040 proximity & light
+5 device(s)
+```
 
 ### **5.6 Memory Planning** {.section-page}
 

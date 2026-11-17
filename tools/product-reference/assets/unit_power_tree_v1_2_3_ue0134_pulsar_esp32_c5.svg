@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#e66a25"/>
+    </marker>
+    <style>
+      .box{fill:#f4f6f8;stroke:#172536;stroke-width:3}
+      .main{fill:#172536;stroke:#e66a25;stroke-width:5}
+      .power{fill:#fff1e8;stroke:#e66a25;stroke-width:3}
+      .title{font:700 28px sans-serif;fill:#172536}
+      .label{font:600 21px sans-serif;fill:#172536;text-anchor:middle}
+      .small{font:400 17px sans-serif;fill:#596573;text-anchor:middle}
+      .net{font:600 17px monospace;fill:#e66a25;text-anchor:middle}
+      .white{fill:white}
+      .wire{stroke:#e66a25;stroke-width:4;fill:none}
+      .line{stroke:#e66a25;stroke-width:4;fill:none;marker-end:url(#arrow)}
+      .both{stroke:#e66a25;stroke-width:4;fill:none;marker-end:url(#arrow);marker-start:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1400" height="820" fill="white"/>
+  <text x="700" y="55" class="title" text-anchor="middle">UNIT PULSAR ESP32-C5 — Power Tree</text>
+
+  <!-- Inputs -->
+  <rect x="50" y="120" width="250" height="110" rx="16" class="power"/>
+  <text x="175" y="168" class="label">USB-C VBUS</text>
+  <text x="175" y="202" class="small">5 V nominal</text>
+
+  <rect x="50" y="290" width="250" height="110" rx="16" class="power"/>
+  <text x="175" y="338" class="label">VIN</text>
+  <text x="175" y="372" class="small">Edge pad 15</text>
+
+  <path d="M300 175 H400 V260" class="wire"/>
+  <text x="350" y="160" class="net">D1</text>
+  <path d="M300 345 H400 V260" class="wire"/>
+  <text x="350" y="335" class="net">D4</text>
+  <text x="450" y="245" class="net">+5V</text>
+  <path d="M400 260 H500" class="line"/>
+
+  <!-- Charger -->
+  <rect x="500" y="170" width="300" height="180" rx="16" class="power"/>
+  <text x="650" y="220" class="label">BQ24074 (IC2)</text>
+  <text x="650" y="256" class="small">Charger with power path</text>
+  <text x="650" y="288" class="small">ILIM ≈1.4 A · ICHG 250 mA</text>
+  <text x="650" y="320" class="small">CHG LED · PGOOD</text>
+
+  <!-- Battery -->
+  <rect x="500" y="470" width="300" height="120" rx="16" class="box"/>
+  <text x="650" y="518" class="label">VBAT · 1S LiPo</text>
+  <text x="650" y="552" class="small">3.7 V nom. · 4.2 V max · JP1 / J3</text>
+  <path d="M650 350 V470" class="both"/>
+
+  <rect x="500" y="650" width="300" height="110" rx="16" class="box"/>
+  <text x="650" y="698" class="label">MAX17048 (IC4)</text>
+  <text x="650" y="732" class="small">Fuel gauge · I2C 0x36</text>
+  <path d="M650 590 V650" class="line"/>
+
+  <!-- Regulator -->
+  <text x="850" y="245" class="net">BMS_OUT</text>
+  <path d="M800 260 H900" class="line"/>
+  <rect x="900" y="190" width="200" height="140" rx="16" class="power"/>
+  <text x="1000" y="240" class="label">SGM6029 (U2)</text>
+  <text x="1000" y="276" class="small">Buck · 1 A</text>
+  <text x="1000" y="306" class="small">EN via EN_PAD</text>
+
+  <path d="M1100 260 H1150" class="line"/>
+  <rect x="1150" y="120" width="200" height="280" rx="20" class="main"/>
+  <text x="1250" y="170" class="label white">3.3 V rail</text>
+  <text x="1250" y="210" class="small white">ESP32-C5HR8</text>
+  <text x="1250" y="240" class="small white">QSPI flash</text>
+  <text x="1250" y="270" class="small white">Sensors · microSD</text>
+  <text x="1250" y="300" class="small white">LEDs · WS2812</text>
+  <text x="1250" y="330" class="small white">QWIIC · J20</text>
+  <text x="1250" y="360" class="small white">3V3 edge pad</text>
+</svg>

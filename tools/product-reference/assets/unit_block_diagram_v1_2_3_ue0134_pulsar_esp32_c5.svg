@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="940" viewBox="0 0 1400 940">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#e66a25"/>
+    </marker>
+    <style>
+      .box{fill:#f4f6f8;stroke:#172536;stroke-width:3}
+      .main{fill:#172536;stroke:#e66a25;stroke-width:5}
+      .power{fill:#fff1e8;stroke:#e66a25;stroke-width:3}
+      .title{font:700 28px sans-serif;fill:#172536}
+      .label{font:600 21px sans-serif;fill:#172536;text-anchor:middle}
+      .small{font:400 17px sans-serif;fill:#596573;text-anchor:middle}
+      .white{fill:white}
+      .line{stroke:#e66a25;stroke-width:4;fill:none;marker-end:url(#arrow)}
+      .both{stroke:#e66a25;stroke-width:4;fill:none;marker-end:url(#arrow);marker-start:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1400" height="940" fill="white"/>
+  <text x="700" y="55" class="title" text-anchor="middle">UNIT PULSAR ESP32-C5 — Functional Block Diagram</text>
+
+  <!-- SoC -->
+  <rect x="510" y="250" width="380" height="290" rx="20" class="main"/>
+  <text x="700" y="315" class="label white">ESP32-C5HR8</text>
+  <text x="700" y="355" class="small white">HP RISC-V 240 MHz · LP RISC-V 48 MHz</text>
+  <text x="700" y="388" class="small white">384 KB HP SRAM · 8 MB PSRAM</text>
+  <text x="700" y="421" class="small white">Wi-Fi 6 2.4/5 GHz · BLE · 802.15.4</text>
+  <text x="700" y="454" class="small white">ADC · I2C · SPI · UART · USB</text>
+  <text x="700" y="500" class="small white">XTAL1 48 MHz</text>
+
+  <!-- Left column -->
+  <rect x="55" y="100" width="300" height="110" rx="16" class="box"/>
+  <text x="205" y="148" class="label">BY25Q64 QSPI Flash</text>
+  <text x="205" y="182" class="small">64 Mbit / 8 MiB</text>
+  <path d="M355 155 H450 V290 H510" class="both"/>
+
+  <rect x="55" y="240" width="300" height="110" rx="16" class="box"/>
+  <text x="205" y="288" class="label">USB-C (J4)</text>
+  <text x="205" y="322" class="small">USB Serial/JTAG · GPIO13/14</text>
+  <path d="M355 295 H430 V340 H510" class="both"/>
+
+  <rect x="55" y="380" width="300" height="110" rx="16" class="box"/>
+  <text x="205" y="428" class="label">microSD Socket</text>
+  <text x="205" y="462" class="small">SPI · CS GPIO23</text>
+  <path d="M355 435 H510" class="both"/>
+
+  <rect x="55" y="520" width="300" height="110" rx="16" class="box"/>
+  <text x="205" y="568" class="label">J20 SPI Connector</text>
+  <text x="205" y="602" class="small">6-pin 1 mm · SS GPIO10</text>
+  <path d="M355 575 H450 V505 H510" class="both"/>
+
+  <!-- Right column -->
+  <rect x="1045" y="100" width="300" height="110" rx="16" class="box"/>
+  <text x="1195" y="148" class="label">Diplexer U1 → J2</text>
+  <text x="1195" y="182" class="small">RF coaxial · 2.4 / 5 GHz</text>
+  <path d="M890 290 H960 V155 H1045" class="both"/>
+
+  <rect x="1045" y="240" width="300" height="130" rx="16" class="box"/>
+  <text x="1195" y="282" class="label">Sensor I2C Bus</text>
+  <text x="1195" y="314" class="small">LPS22HB · FHT40 · VCNL4040</text>
+  <text x="1195" y="342" class="small">MMC5603NJ · GPIO2 / GPIO3</text>
+  <path d="M890 340 H1045" class="both"/>
+
+  <rect x="1045" y="400" width="300" height="110" rx="16" class="box"/>
+  <text x="1195" y="448" class="label">QWIIC I2C (J1)</text>
+  <text x="1195" y="482" class="small">GPIO1 / GPIO6 · 3.3 V</text>
+  <path d="M890 430 H970 V455 H1045" class="both"/>
+
+  <rect x="1045" y="540" width="300" height="110" rx="16" class="box"/>
+  <text x="1195" y="588" class="label">WS2812 RGB LED</text>
+  <text x="1195" y="622" class="small">GPIO0 · user LED GPIO27</text>
+  <path d="M890 500 H990 V595 H1045" class="line"/>
+
+  <rect x="1045" y="680" width="300" height="110" rx="16" class="box"/>
+  <text x="1195" y="728" class="label">BOOT / RESET</text>
+  <text x="1195" y="762" class="small">GPIO28 · CHIP_PU</text>
+  <path d="M1045 735 H870 V540" class="line"/>
+
+  <rect x="55" y="660" width="300" height="110" rx="16" class="box"/>
+  <text x="205" y="708" class="label">Edge Pads</text>
+  <text x="205" y="742" class="small">2 × 15 Nano-style positions</text>
+  <path d="M355 715 H530 V540" class="both"/>
+
+  <!-- Power -->
+  <rect x="550" y="620" width="300" height="100" rx="16" class="power"/>
+  <text x="700" y="662" class="label">SGM6029 · 3.3 V</text>
+  <text x="700" y="694" class="small">1 A buck regulator</text>
+  <path d="M760 620 V540" class="line"/>
+
+  <rect x="550" y="800" width="300" height="110" rx="16" class="power"/>
+  <text x="700" y="848" class="label">BQ24074</text>
+  <text x="700" y="882" class="small">Charger · power path</text>
+  <path d="M700 800 V720" class="line"/>
+
+  <rect x="55" y="800" width="300" height="110" rx="16" class="power"/>
+  <text x="205" y="848" class="label">USB-C / VIN</text>
+  <text x="205" y="882" class="small">5 V nominal</text>
+  <path d="M355 855 H550" class="line"/>
+
+  <rect x="1045" y="800" width="300" height="110" rx="16" class="power"/>
+  <text x="1195" y="848" class="label">1S LiPo + MAX17048</text>
+  <text x="1195" y="882" class="small">JP1 / J3 · fuel gauge 0x36</text>
+  <path d="M850 855 H1045" class="both"/>
+</svg>

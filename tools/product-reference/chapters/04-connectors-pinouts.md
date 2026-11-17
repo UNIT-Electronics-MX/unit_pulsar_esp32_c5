@@ -6,6 +6,8 @@ aliases depend on the selected board definition.
 
 ### **4.1 General Pinout** {.section-page}
 
+![UNIT PULSAR ESP32-C5 general pinout](tools/product-reference/assets/unit_pinout_v1_2_3_ue0134_devlab_pulsar_esp32_c5_en.png){width=7.2in}
+
 | Pos. | Board label | ESP32-C5HR8 | Primary board role | Shared resource |
 |---:|---|---:|---|---|
 | 1 | `D13` / `SCK` / LED | GPIO27 | SPI clock | microSD CLK, J20, `BUILTIN2` LED; strapping pin |

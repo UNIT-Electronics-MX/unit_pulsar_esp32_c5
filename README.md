@@ -40,7 +40,7 @@ Bluetooth LE 5, Zigbee 3.0 and Thread 1.4.
 | Storage | 47309-2651 microSD holder |
 | Indicators | One WS2812 1010 RGB LED, user LED, power LED, and charge LED |
 | Connections | USB-C, QWIIC I²C, battery (PH 2.0), 6-pin SH 1 mm, RF coaxial antenna, and edge pads |
-| Hardware Revision | Unspecified |
+git| Hardware Revision | Unspecified |
 
 </div>
 
