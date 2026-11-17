@@ -343,7 +343,8 @@ body {
   break-before: page;
 }
 
-.pinout-page + table {
+.pinout-page + table,
+.pinout-page + p {
   break-before: page;
 }
 
@@ -351,9 +352,9 @@ body {
   break-before: auto;
 }
 
-/* Leave room for the chapter heading, intro, and 4.1 heading on the same page. */
+/* The top view shares its page only with the chapter and 4.1 headings. */
 .pinout-page.pinout-page--first img {
-  max-height: 190mm;
+  max-height: 212mm;
 }
 
 .pinout-page img {
@@ -482,6 +483,32 @@ td {
 
 tbody tr:nth-child(even) {
   background: var(--soft);
+}
+
+/* The GPIO priority remains readable in grayscale through its P2/P3/P4 label. */
+.gpio-priority-p2,
+.gpio-priority-p3,
+.gpio-priority-p4 {
+  font-weight: 700;
+}
+
+.gpio-priority-p2 { color: #17633e; }
+.gpio-priority-p3 { color: #805000; }
+.gpio-priority-p4 { color: #962b39; }
+
+.gpio-mux-table td:has(.gpio-priority-p2) {
+  background: #e2f2e8;
+  border-left: 2pt solid #17633e;
+}
+
+.gpio-mux-table td:has(.gpio-priority-p3) {
+  background: #fff0ce;
+  border-left: 2pt solid #a46600;
+}
+
+.gpio-mux-table td:has(.gpio-priority-p4) {
+  background: #fbe3e7;
+  border-left: 2pt solid #a43140;
 }
 
 pre {

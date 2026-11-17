@@ -1,9 +1,5 @@
 ## **4 Connectors & Pinouts**
 
-Pin labels describe hardware revision V1.2.3. GPIO numbers identify
-ESP32-C5HR8 signals according to the Espressif datasheet pin table; framework
-aliases depend on the selected board definition.
-
 ### **4.1 General Pinout** {.section-page}
 
 <div class="pinout-page pinout-page--first">
@@ -17,6 +13,10 @@ aliases depend on the selected board definition.
 ![Bottom view pinout](tools/product-reference/assets/unit_btm_pinout_v1_2_3_ue0134_devlab_pulsar_esp32_c5_en.png){height=8.4in}
 
 </div>
+
+Pin labels describe hardware revision V1.2.3. GPIO numbers identify
+ESP32-C5HR8 signals according to the Espressif datasheet pin table; framework
+aliases depend on the selected board definition.
 
 | Pos. | Board label | ESP32-C5HR8 | Primary board role | Shared resource |
 |---:|---|---:|---|---|
@@ -125,40 +125,44 @@ the corresponding I2C bus is not in use.
 Each ESP32-C5 GPIO selects one HP IO MUX function (F0–F2). Signals without
 a fixed IO MUX pin are routed through the GPIO Matrix. F0–F2 come from
 datasheet Table 2-3, LP functions from Table 2-5, and analog functions from
-Table 2-7. Priority follows datasheet Section 2.3.5: P2 = free use,
-P3 = use with caution, P4 = allocated, not recommended.
+Table 2-7. Priority follows datasheet Section 2.3.5:
+[P2]{.gpio-priority-p2} = free use,
+[P3]{.gpio-priority-p3} = use with caution,
+[P4]{.gpio-priority-p4} = allocated, not recommended.
 
+::: {.gpio-mux-table}
 | GPIO | Pin | F0 | F1 | F2 | LP / analog functions | Priority | Board use |
 |---:|---:|---|---|---|---|---|---|
-| 0 | 9 | GPIO0 | GPIO0 | — | LP_UART_DTRN; XTAL_32K_P | P2 | `D2`, NeoPixel data |
-| 1 | 10 | GPIO1 | GPIO1 | — | LP_UART_DSRN; XTAL_32K_N; ADC1_CH0 | P2 | `A1` / `D15`, QWIIC SDA |
-| 2 | 11 | MTMS | GPIO2 | FSPIQ | LP_UART_RTSN; LP_I2C_SDA; ADC1_CH1 | P3: strapping, JTAG | `SDA` / `D18`, sensor I2C |
-| 3 | 12 | MTDI | GPIO3 | — | LP_UART_CTSN; LP_I2C_SCL; ADC1_CH2 | P3: strapping, JTAG | `SCL` / `D19`, sensor I2C |
-| 4 | 13 | MTCK | GPIO4 | FSPIHD | LP_UART_RXD; ADC1_CH3 | P3: JTAG | `A2` / `D16` |
-| 5 | 14 | MTDO | GPIO5 | FSPIWP | LP_UART_TXD; ADC1_CH4 | P3: JTAG | `A3` / `D17` |
-| 6 | 15 | GPIO6 | GPIO6 | FSPICLK | LP_GPIO6; ADC1_CH5 | P2 | `A6` / `D21`, QWIIC SCL |
-| 7 | 16 | SDIO_DATA1 | GPIO7 | FSPID | — | P3: strapping | `D11` / `MOSI`, microSD CMD, J20 |
-| 8 | 17 | SDIO_DATA0 | GPIO8 | — | PAD_COMP0 | P2 | Not routed to the header (net label `D2`) |
-| 9 | 18 | SDIO_CLK | GPIO9 | — | PAD_COMP1 | P2 | `D4` |
-| 10 | 19 | SDIO_CMD | GPIO10 | FSPICS0 | — | P2 | `D10` / `SS`, J20 |
-| 11 | 20 | U0TXD | GPIO11 | — | — | P3: UART0 | `TX0` / `D1` |
-| 12 | 21 | U0RXD | GPIO12 | — | — | P3: UART0 | `RX0` / `D0` |
-| 13 | 22 | SDIO_DATA3 | GPIO13 | — | USB_D- | P3: USB | `D8`, USB-C D- |
-| 14 | 23 | SDIO_DATA2 | GPIO14 | — | USB_D+ | P3: USB | `D9`, USB-C D+ |
-| 15 | 25 | SPICS1 | GPIO15 | — | — | P4 | PSRAM chip select (SPI0/1) |
-| 16 | 26 | SPICS0 | GPIO16 | — | — | P4 | Flash CS# (SPI0/1) |
-| 17 | 27 | SPIQ | GPIO17 | — | — | P4 | Flash / PSRAM SIO1 |
-| 18 | 28 | SPIWP | GPIO18 | — | — | P4 | Flash / PSRAM SIO2 |
-| 19 | 29 | GPIO19 | GPIO19 | — | VDD_SPI | P3: VDD_SPI | Not routed to the header |
-| 20 | 30 | SPIHD | GPIO20 | — | — | P4 | Flash / PSRAM SIO3 |
-| 21 | 31 | SPICLK | GPIO21 | — | — | P4 | Flash / PSRAM CLK |
-| 22 | 32 | SPID | GPIO22 | — | — | P4 | Flash / PSRAM SIO0 |
-| 23 | 33 | GPIO23 | GPIO23 | — | — | P2 | `D5`, microSD CS |
-| 24 | 34 | GPIO24 | GPIO24 | — | — | P2 | `D6` |
-| 25 | 35 | GPIO25 | GPIO25 | — | — | P3: strapping | `D7` |
-| 26 | 36 | GPIO26 | GPIO26 | — | — | P3: strapping | `D12` / `MISO`, microSD DAT0, J20 |
-| 27 | 37 | GPIO27 | GPIO27 | — | — | P3: strapping | `D13` / `SCK`, microSD CLK, J20, LED |
-| 28 | 38 | GPIO28 | GPIO28 | — | — | P3: strapping | `D3` / `BOOT` |
+| 0 | 9 | GPIO0 | GPIO0 | — | LP_UART_DTRN; XTAL_32K_P | [P2]{.gpio-priority-p2} | `D2`, NeoPixel data |
+| 1 | 10 | GPIO1 | GPIO1 | — | LP_UART_DSRN; XTAL_32K_N; ADC1_CH0 | [P2]{.gpio-priority-p2} | `A1` / `D15`, QWIIC SDA |
+| 2 | 11 | MTMS | GPIO2 | FSPIQ | LP_UART_RTSN; LP_I2C_SDA; ADC1_CH1 | [P3]{.gpio-priority-p3}: strapping, JTAG | `SDA` / `D18`, sensor I2C |
+| 3 | 12 | MTDI | GPIO3 | — | LP_UART_CTSN; LP_I2C_SCL; ADC1_CH2 | [P3]{.gpio-priority-p3}: strapping, JTAG | `SCL` / `D19`, sensor I2C |
+| 4 | 13 | MTCK | GPIO4 | FSPIHD | LP_UART_RXD; ADC1_CH3 | [P3]{.gpio-priority-p3}: JTAG | `A2` / `D16` |
+| 5 | 14 | MTDO | GPIO5 | FSPIWP | LP_UART_TXD; ADC1_CH4 | [P3]{.gpio-priority-p3}: JTAG | `A3` / `D17` |
+| 6 | 15 | GPIO6 | GPIO6 | FSPICLK | LP_GPIO6; ADC1_CH5 | [P2]{.gpio-priority-p2} | `A6` / `D21`, QWIIC SCL |
+| 7 | 16 | SDIO_DATA1 | GPIO7 | FSPID | — | [P3]{.gpio-priority-p3}: strapping | `D11` / `MOSI`, microSD CMD, J20 |
+| 8 | 17 | SDIO_DATA0 | GPIO8 | — | PAD_COMP0 | [P2]{.gpio-priority-p2} | Not routed to the header (net label `D2`) |
+| 9 | 18 | SDIO_CLK | GPIO9 | — | PAD_COMP1 | [P2]{.gpio-priority-p2} | `D4` |
+| 10 | 19 | SDIO_CMD | GPIO10 | FSPICS0 | — | [P2]{.gpio-priority-p2} | `D10` / `SS`, J20 |
+| 11 | 20 | U0TXD | GPIO11 | — | — | [P3]{.gpio-priority-p3}: UART0 | `TX0` / `D1` |
+| 12 | 21 | U0RXD | GPIO12 | — | — | [P3]{.gpio-priority-p3}: UART0 | `RX0` / `D0` |
+| 13 | 22 | SDIO_DATA3 | GPIO13 | — | USB_D- | [P3]{.gpio-priority-p3}: USB | `D8`, USB-C D- |
+| 14 | 23 | SDIO_DATA2 | GPIO14 | — | USB_D+ | [P3]{.gpio-priority-p3}: USB | `D9`, USB-C D+ |
+| 15 | 25 | SPICS1 | GPIO15 | — | — | [P4]{.gpio-priority-p4} | PSRAM chip select (SPI0/1) |
+| 16 | 26 | SPICS0 | GPIO16 | — | — | [P4]{.gpio-priority-p4} | Flash CS# (SPI0/1) |
+| 17 | 27 | SPIQ | GPIO17 | — | — | [P4]{.gpio-priority-p4} | Flash / PSRAM SIO1 |
+| 18 | 28 | SPIWP | GPIO18 | — | — | [P4]{.gpio-priority-p4} | Flash / PSRAM SIO2 |
+| 19 | 29 | GPIO19 | GPIO19 | — | VDD_SPI | [P3]{.gpio-priority-p3}: VDD_SPI | Not routed to the header |
+| 20 | 30 | SPIHD | GPIO20 | — | — | [P4]{.gpio-priority-p4} | Flash / PSRAM SIO3 |
+| 21 | 31 | SPICLK | GPIO21 | — | — | [P4]{.gpio-priority-p4} | Flash / PSRAM CLK |
+| 22 | 32 | SPID | GPIO22 | — | — | [P4]{.gpio-priority-p4} | Flash / PSRAM SIO0 |
+| 23 | 33 | GPIO23 | GPIO23 | — | — | [P2]{.gpio-priority-p2} | `D5`, microSD CS |
+| 24 | 34 | GPIO24 | GPIO24 | — | — | [P2]{.gpio-priority-p2} | `D6` |
+| 25 | 35 | GPIO25 | GPIO25 | — | — | [P3]{.gpio-priority-p3}: strapping | `D7` |
+| 26 | 36 | GPIO26 | GPIO26 | — | — | [P3]{.gpio-priority-p3}: strapping | `D12` / `MISO`, microSD DAT0, J20 |
+| 27 | 37 | GPIO27 | GPIO27 | — | — | [P3]{.gpio-priority-p3}: strapping | `D13` / `SCK`, microSD CLK, J20, LED |
+| 28 | 38 | GPIO28 | GPIO28 | — | — | [P3]{.gpio-priority-p3}: strapping | `D3` / `BOOT` |
+:::
 
 LP functions use LP GPIO numbering (LP_GPIO0–LP_GPIO6 = GPIO0–GPIO6) and remain
 available in low-power modes. GPIO15–GPIO18 and GPIO20–GPIO22 connect to the
