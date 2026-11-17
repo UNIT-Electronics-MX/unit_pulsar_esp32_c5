@@ -1,6 +1,6 @@
 ## **3 Functional Overview**
 
-The UNIT PULSAR ESP32-C5 is organized around the ESP32-C5HR8 SoC, with an
+The UNIT PULSAR ESP32-C5 SENSE is organized around the ESP32-C5HR8 SoC, with an
 external flash, a dual-band RF path, fixed onboard sensors, and a battery
 power path. Firmware can use each block independently or combine wireless
 connectivity, sensing, storage, and user feedback in one application.
@@ -11,7 +11,7 @@ microSD and SPI, radio and antenna, and the edge pads with QWIIC expansion.
 
 ### **3.1 Block Diagram** {.section-page}
 
-![UNIT PULSAR ESP32-C5 functional block diagram](tools/product-reference/assets/unit_block_diagram_v1_2_3_ue0134_pulsar_esp32_c5.png){width=7.0in}
+![UNIT PULSAR ESP32-C5 SENSE functional block diagram](tools/product-reference/assets/unit_block_diagram_v1_2_3_ue0134_pulsar_esp32_c5.png){width=7.0in}
 
 The ESP32-C5HR8 controls every data path. The BY25Q64 flash stores executable
 code and nonvolatile application data. The in-package PSRAM extends working
@@ -23,7 +23,7 @@ visual outputs.
 
 ### **3.2 Board Topology** {.section-page}
 
-![Views of the UNIT PULSAR ESP32-C5 board topology](tools/product-reference/assets/unit_topology_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png){width=7.2in}
+![Views of the UNIT PULSAR ESP32-C5 SENSE board topology](tools/product-reference/assets/unit_topology_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png){width=7.2in}
 
 #### **Top Side**
 
@@ -233,7 +233,7 @@ shared connection before closing EN_PAD2.
 
 ### **3.11 Power Tree** {.section-page}
 
-![UNIT PULSAR ESP32-C5 power tree](tools/product-reference/assets/unit_power_tree_v1_2_3_ue0134_pulsar_esp32_c5.png){width=7.0in}
+![UNIT PULSAR ESP32-C5 SENSE power tree](tools/product-reference/assets/unit_power_tree_v1_2_3_ue0134_pulsar_esp32_c5.png){width=7.0in}
 
 The power tree summarizes the main supply domains and their relationship. It
 is intended as a functional reference and does not replace the complete
@@ -272,7 +272,7 @@ The board exposes 30 Nano-style positions on two 15-position edge-pad rows
 firmware ownership must be decided before reusing them. Chapter 4 lists the
 complete pinout.
 
-The UNIT PULSAR ESP32-C5 provides two independent I2C routes, allowing the
+The UNIT PULSAR ESP32-C5 SENSE provides two independent I2C routes, allowing the
 onboard sensors and external QWIIC devices to operate on separate buses.
 
 | Interface | SDA | SCL | Primary use |
@@ -294,7 +294,7 @@ multiple devices are connected to the same bus.
 
 ### **3.14 Combined System Operation** {.section-page}
 
-The UNIT PULSAR ESP32-C5 is designed to support concurrent operation of its
+The UNIT PULSAR ESP32-C5 SENSE is designed to support concurrent operation of its
 onboard subsystems. The ESP32-C5HR8 can combine wireless connectivity,
 environmental sensing, battery monitoring, removable storage, and RGB
 indication within the same application.

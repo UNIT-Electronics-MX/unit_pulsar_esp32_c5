@@ -1,6 +1,6 @@
 ## **1 The Board**
 
-The UNIT PULSAR ESP32-C5 is a development board for evaluating the Espressif
+The UNIT PULSAR ESP32-C5 SENSE is a development board for evaluating the Espressif
 ESP32-C5HR8 and building connected applications that combine dual-band Wi-Fi 6,
 Bluetooth LE, and IEEE 802.15.4 radio with environmental sensing, removable
 storage, battery operation, and general-purpose I/O. Schematic revision V1.2.3
@@ -11,7 +11,7 @@ rows.
 ### **1.1 Accessories** {.section-page}
 
 The following optional accessories are recommended for use with the UNIT
-PULSAR ESP32-C5. Select accessories according to the interfaces and features
+PULSAR ESP32-C5 SENSE. Select accessories according to the interfaces and features
 required by the application.
 
 | Accessory | Purpose | Selection notes |
@@ -29,7 +29,7 @@ connecting accessories.
 
 | Item | Value |
 |---|---|
-| Product | UNIT PULSAR ESP32-C5 |
+| Product | UNIT PULSAR ESP32-C5 SENSE |
 | SKU | UE0134 |
 | Product family | UNIT DevLab ecosystem |
 | Product type | Multi-interface ESP32-C5 development board |
@@ -66,8 +66,12 @@ Hardware revision and documentation revision are identified independently.
 
 ### **1.4 Board Views** {.section-page}
 
+<div class="board-views">
+
 ![Top view](tools/product-reference/assets/unit_top_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png){height=4.2in}
 ![Bottom view](tools/product-reference/assets/unit_btm_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png){height=4.2in}
+
+</div>
 
 ### **1.5 Handling** {.section-page}
 

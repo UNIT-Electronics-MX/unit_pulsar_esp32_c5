@@ -1,6 +1,6 @@
 ## **Description**
 
-The UNIT PULSAR ESP32-C5 is a multi-interface development board in the UNIT
+The UNIT PULSAR ESP32-C5 SENSE is a multi-interface development board in the UNIT
 DevLab ecosystem, built around the Espressif ESP32-C5HR8 SoC with 8 MB of
 in-package PSRAM. The V1.2.3 design combines dual-band 2.4/5 GHz Wi-Fi 6,
 Bluetooth LE, and IEEE 802.15.4 connectivity with external QSPI flash,

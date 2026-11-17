@@ -31,7 +31,7 @@ those measurements are used.
 
 ### **6.4 Mechanical Integration Considerations** {.section-page}
 
-When integrating the UNIT PULSAR ESP32-C5 into a carrier board, fixture, or
+When integrating the UNIT PULSAR ESP32-C5 SENSE into a carrier board, fixture, or
 enclosure, provide sufficient clearance for:
 
 - USB-C cable insertion and removal.

@@ -1,12 +1,12 @@
 ## **2 Ratings**
 
 This chapter defines the recommended operating conditions and electrical
-characteristics of the UNIT PULSAR ESP32-C5 hardware V1.2.3. Ratings apply to
+characteristics of the UNIT PULSAR ESP32-C5 SENSE hardware V1.2.3. Ratings apply to
 the complete board unless otherwise stated.
 
 ### **2.1 Recommended Operating Conditions** {.section-page}
 
-The UNIT PULSAR ESP32-C5 can be powered from USB-C, VIN, or a single-cell LiPo
+The UNIT PULSAR ESP32-C5 SENSE can be powered from USB-C, VIN, or a single-cell LiPo
 battery. The BQ24074 power-path charger feeds the onboard SGM6029 buck
 regulator, which supplies the 3.3 V logic domain used by the ESP32-C5HR8 and
 onboard peripherals.
@@ -29,7 +29,7 @@ onboard peripherals.
 
 ### **2.2 Power Domains and Power Distribution**
 
-The UNIT PULSAR ESP32-C5 uses separate power domains for external supply,
+The UNIT PULSAR ESP32-C5 SENSE uses separate power domains for external supply,
 battery operation, system power, and regulated 3.3 V logic.
 
 The main power domains are:

@@ -1,7 +1,7 @@
-# UNIT PULSAR ESP32C5 Development Board
+# UNIT PULSAR ESP32-C5 SENSE Development Board
 
 
-The UNIT PULSAR ESP32C5 is a multi-interface development board in the UNIT
+The UNIT PULSAR ESP32-C5 SENSE is a multi-interface development board in the UNIT
 DevLab ecosystem, based on the Espressif ESP32-C5HR8 microcontroller with
 8 MiB of in-package PSRAM. The hardware integrates external QSPI flash,
 environmental and magnetic sensing, microSD storage, an addressable RGB
@@ -10,8 +10,8 @@ RF coaxial antenna connector. It supports 2.4 and 5 GHz dual-band Wi-Fi 6,
 Bluetooth LE 5, Zigbee 3.0 and Thread 1.4.
 
 <div align="center">
-  <img src="tools/product-reference/assets/unit_top_landscape_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png" width="450px" alt="UNIT PULSAR ESP32-C5 Development Board">
-  <p><em>UNIT PULSAR ESP32-C5 Development Board</em></p>
+  <img src="tools/product-reference/assets/unit_top_landscape_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png" width="450px" alt="UNIT PULSAR ESP32-C5 SENSE Development Board">
+  <p><em>UNIT PULSAR ESP32-C5 SENSE Development Board</em></p>
 </div>
 
 <div align="center">

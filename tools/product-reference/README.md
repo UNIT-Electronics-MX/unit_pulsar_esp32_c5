@@ -1,6 +1,6 @@
 # Product Reference build
 
-The UNIT PULSAR ESP32-C5 Product Reference source is maintained in Markdown under
+The UNIT PULSAR ESP32-C5 SENSE Product Reference source is maintained in Markdown under
 `chapters/`. Document metadata and chapter order are defined in `book.yml`.
 Version 0.1.0 is based on the V1.2.3 schematic, bill of materials, and
 official ESP32-C5 component datasheet.

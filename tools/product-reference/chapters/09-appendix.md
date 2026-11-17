@@ -24,7 +24,7 @@ authoritative electrical schematic for hardware revision V1.2.3.
 
 ### **9.2 Technical References** {.section-page}
 
-The documentation set for the UNIT PULSAR ESP32-C5 is organized around the
+The documentation set for the UNIT PULSAR ESP32-C5 SENSE is organized around the
 following technical sources:
 
 1. The hardware V1.2.3 schematic defines board connectivity, component
@@ -60,7 +60,7 @@ configuration, connected peripherals, or mechanical integration:
 
 | Field | Value |
 |---|---|
-| Product | UNIT PULSAR ESP32-C5 |
+| Product | UNIT PULSAR ESP32-C5 SENSE |
 | SKU | UE0134 |
 | Product family | UNIT DevLab ecosystem |
 | Hardware revision | V1.2.3 |

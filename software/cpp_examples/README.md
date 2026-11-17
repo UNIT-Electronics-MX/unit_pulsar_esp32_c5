@@ -1,6 +1,6 @@
-# UNIT PULSAR ESP32-C5 C++ Examples
+# UNIT PULSAR ESP32-C5 SENSE C++ Examples
 
-Arduino C++ sketches for the UNIT PULSAR ESP32-C5 (hardware V1.2.3). Pin
+Arduino C++ sketches for the UNIT PULSAR ESP32-C5 SENSE (hardware V1.2.3). Pin
 numbers follow the Product Reference.
 
 Each sketch is stored in a directory with the same name as its `.ino` file so

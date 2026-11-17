@@ -23,7 +23,7 @@
   }
 
   @top-right {
-    content: "UNIT PULSAR ESP32-C5\A HARDWARE V1.2.3";
+    content: "UNIT PULSAR ESP32-C5 SENSE\A HARDWARE V1.2.3";
     color: var(--ink);
     font: 700 8pt "Noto Sans", sans-serif;
     line-height: 1.3;
@@ -538,6 +538,24 @@ blockquote {
 figure {
   margin: 5mm 0;
   break-inside: avoid;
+}
+
+/* Top and bottom board views side by side on one page. */
+.board-views p {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12mm;
+  margin: 4mm 0;
+  break-inside: avoid;
+}
+
+.board-views img {
+  width: auto !important;
+  height: 180mm !important;
+  max-width: none;
+  max-height: none;
+  margin: 0;
 }
 
 figcaption {
