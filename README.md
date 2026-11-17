@@ -18,10 +18,10 @@ Bluetooth LE 5, Zigbee 3.0 and Thread 1.4.
 
 ### Quick Setup
 
-[<img src="https://img.shields.io/badge/Product%20Wiki-blue?style=for-the-badge" alt="Product Wiki">]()
-[<img src="https://img.shields.io/badge/Datasheet-green?style=for-the-badge" alt="Datasheet">](docs/hardware/unit_product_reference_v_0_1_0_pulsar_esp32_c5.pdf)
-[<img src="https://img.shields.io/badge/Buy%20Now-orange?style=for-the-badge" alt="Buy Now">]()
-[<img src="https://img.shields.io/badge/Getting%20Started-purple?style=for-the-badge" alt="Getting Started">]()
+[<img src="https://img.shields.io/badge/Product%20Wiki-blue?style=for-the-badge" alt="Product Wiki">](https://wiki.uelectronics.com/wiki)
+[<img src="https://img.shields.io/badge/Datasheet-green?style=for-the-badge" alt="Datasheet">](https://unit-electronics-mx.github.io/unit_pulsar_esp32_c5/hardware/unit_product_reference_v_0_1_0_pulsar_esp32_c5.pdf)
+[<img src="https://img.shields.io/badge/Buy%20Now-orange?style=for-the-badge" alt="Buy Now">](https://uelectronics.com/)
+[<img src="https://img.shields.io/badge/Getting%20Started-purple?style=for-the-badge" alt="Getting Started">](https://wiki.uelectronics.com/wiki)
 
 </div>
 
@@ -55,8 +55,10 @@ git| Hardware Revision | Unspecified |
 ## Resources
 
 - [Hardware guide](hardware/README.md)
-- [Schematic Diagram](https://github.com/UNIT-Electronics-MX/unit_pulsar_esp32_c5/blob/main/hardware/unit_sch_v_1_2_3_ue0134_pulsar_esp32_c5.pdf)
-- [Pinout Diagram](tools/product-reference/assets/pulsar_c5_pinout_.png)
+- [Product Reference Manual](https://unit-electronics-mx.github.io/unit_pulsar_esp32_c5/hardware/unit_product_reference_v_0_1_0_pulsar_esp32_c5.pdf)
+- [Schematic Diagram](https://unit-electronics-mx.github.io/unit_pulsar_esp32_c5/hardware/unit_sch_v_1_2_3_ue0134_pulsar_esp32_c5.pdf)
+- [Top Pinout](https://unit-electronics-mx.github.io/unit_pulsar_esp32_c5/hardware/unit_top_pinout_v1_2_3_ue0134_devlab_pulsar_esp32_c5_en.pdf)
+- [Bottom Pinout](https://unit-electronics-mx.github.io/unit_pulsar_esp32_c5/hardware/unit_btm_pinout_v1_2_3_ue0134_devlab_pulsar_esp32_c5_en.pdf)
 - Getting Started Guide: pending publication.
 - C++ examples: pending publication.
 
