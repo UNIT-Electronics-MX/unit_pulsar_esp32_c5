@@ -80,6 +80,11 @@
   @top-right { content: none; border: 0; }
 }
 
+@page board-views-landscape {
+  size: A4 landscape;
+  margin: 17mm 14mm 12mm;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -485,30 +490,15 @@ tbody tr:nth-child(even) {
   background: var(--soft);
 }
 
-/* The GPIO priority remains readable in grayscale through its P2/P3/P4 label. */
-.gpio-priority-p2,
-.gpio-priority-p3,
-.gpio-priority-p4 {
+.gpio-mux-table th:first-child {
+  background: var(--brand-dark);
+}
+
+.gpio-mux-table td:first-child {
+  background: #fce8dc;
+  color: #8d360b;
+  border-left: 2pt solid var(--brand);
   font-weight: 700;
-}
-
-.gpio-priority-p2 { color: #17633e; }
-.gpio-priority-p3 { color: #805000; }
-.gpio-priority-p4 { color: #962b39; }
-
-.gpio-mux-table td:has(.gpio-priority-p2) {
-  background: #e2f2e8;
-  border-left: 2pt solid #17633e;
-}
-
-.gpio-mux-table td:has(.gpio-priority-p3) {
-  background: #fff0ce;
-  border-left: 2pt solid #a46600;
-}
-
-.gpio-mux-table td:has(.gpio-priority-p4) {
-  background: #fbe3e7;
-  border-left: 2pt solid #a43140;
 }
 
 pre {
@@ -540,22 +530,58 @@ figure {
   break-inside: avoid;
 }
 
-/* Top and bottom board views side by side on one page. */
+.board-views-spread {
+  page: board-views-landscape;
+  break-before: page;
+  break-after: page;
+}
+
+.board-views-spread h3 {
+  margin: 0 0 3mm;
+}
+
+/* Rotate the long board images to fill the upper and lower halves of one sheet. */
 .board-views p {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 12mm;
-  margin: 4mm 0;
+  position: relative;
+  height: 160mm;
+  margin: 0;
   break-inside: avoid;
 }
 
+.board-views p::before,
+.board-views p::after {
+  position: absolute;
+  left: 0;
+  color: var(--brand-dark);
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+
+.board-views p::before {
+  content: "TOP VIEW";
+  top: 36mm;
+}
+
+.board-views p::after {
+  content: "BOTTOM VIEW";
+  top: 118mm;
+}
+
 .board-views img {
-  width: auto !important;
-  height: 180mm !important;
+  position: absolute;
+  left: 50%;
+  top: 39mm;
+  width: 78mm !important;
+  height: auto !important;
   max-width: none;
   max-height: none;
   margin: 0;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.board-views img:nth-of-type(2) {
+  top: 121mm;
 }
 
 figcaption {

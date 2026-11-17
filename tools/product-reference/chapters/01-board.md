@@ -64,14 +64,13 @@ Hardware revision and documentation revision are identified independently.
 | JP1, J3 | PH 2.0 mm 2P, 1.25 mm 2P | Parallel battery connections |
 | S1, S2 | 1TS026A-1600-0553-CT | BOOT and RESET push buttons |
 
+::: {.board-views-spread}
 ### **1.4 Board Views** {.section-page}
 
-<div class="board-views">
-
-![Top view](tools/product-reference/assets/unit_top_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png){height=4.2in}
-![Bottom view](tools/product-reference/assets/unit_btm_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png){height=4.2in}
-
-</div>
+::: {.board-views}
+![Top view](tools/product-reference/assets/unit_top_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png){height=4.2in} ![Bottom view](tools/product-reference/assets/unit_btm_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png){height=4.2in}
+:::
+:::
 
 ### **1.5 Handling** {.section-page}
 
