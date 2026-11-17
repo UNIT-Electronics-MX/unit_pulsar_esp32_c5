@@ -1,17 +1,15 @@
 ## **5 Board Operation**
 
 The procedures below define the board workflow for the Arduino IDE and the
-Espressif Arduino core.
+UNIT Electronics ESP32 Arduino package.
 
 ### **5.1 Getting Started with Arduino IDE** {.section-page}
 
 1. Install Arduino IDE 2.x.
-2. Add the Espressif package index to **Additional Boards Manager URLs**:
-   `https://espressif.github.io/arduino-esp32/package_esp32_index.json`
-3. Install the **esp32 by Espressif Systems** package, version 3.3 or later
-   (ESP32-C5 support).
-4. Select **ESP32C5 Dev Module** or an installed PULSAR-specific board
-   definition.
+2. Add the UNIT Electronics ESP32 package index to **Additional Boards Manager URLs**:
+   `https://raw.githubusercontent.com/UNIT-Electronics/Uelectronics-ESP32-Arduino-Package/main/package_Uelectronics_esp32_index.json`
+3. Install the **UNIT Electronics ESP32** package from Boards Manager.
+4. Select **PULSAR ESP32-C5** from the UNIT Electronics board list.
 5. Set **Flash Size** to 8 MB, enable **PSRAM**, and enable **USB CDC On
    Boot** to use the USB-C serial port.
 6. Connect an antenna to J2 if the sketch uses the radio.
@@ -80,13 +78,16 @@ the bring-up sequence in Section 5.4:
 | `07_wireless/` | `wifi_http` | DHT11, Wi-Fi network | 2.4/5 GHz Wi-Fi station and HTTP upload |
 | `07_wireless/` | `ble_touch` | TTP223B, phone | BLE GATT server with notifications |
 
-Compile the examples with **ESP32C5 Dev Module**, **USB CDC On Boot**
-enabled, 8 MB flash, and PSRAM enabled:
+Compile the examples with **PULSAR ESP32-C5**, **USB CDC On Boot** enabled,
+8 MB flash, and PSRAM enabled. For Arduino CLI, use the FQBN listed for that
+board by the installed UNIT Electronics package:
 
 ```sh
-FQBN=esp32:esp32:esp32c5:CDCOnBoot=cdc,PSRAM=enabled,FlashSize=8M,PartitionScheme=default_8MB
-arduino-cli compile -u -p <port> --fqbn "$FQBN" software/cpp_examples/01_basics/blink_boot_button
-arduino-cli monitor -p <port> -c baudrate=115200
+arduino-cli board listall "PULSAR ESP32-C5"
+FQBN='paste-the-listed-FQBN-here'
+PORT='your-serial-port'
+arduino-cli compile -u -p "$PORT" --fqbn "$FQBN" software/cpp_examples/01_basics/blink_boot_button
+arduino-cli monitor -p "$PORT" -c baudrate=115200
 ```
 
 #### **Hello World: Blink and BOOT Button**
