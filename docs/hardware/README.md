@@ -1,8 +1,8 @@
-# UNIT PULSAR ESP32-C5 Hardware
+# UNIT PULSAR ESP32-C5 SENSE Hardware
 
 ## Hardware Scope
 
-This page summarizes the UNIT PULSAR ESP32-C5 board from
+This page summarizes the UNIT PULSAR ESP32-C5 SENSE board from
 schematic revision V1.2.3 and the existing Product Reference source. Top and
 bottom board photographs and a controlled dimension drawing are not available
 for that revision. The 2D pinout remains the available board preview.
@@ -48,7 +48,7 @@ ESP32-C5HR8 (in-package PSRAM)
 
 ## Naming Rules
 
-- Product name: **UNIT PULSAR ESP32-C5**.
+- Product name: **UNIT PULSAR ESP32-C5 SENSE**.
 - Product family: **UNIT DevLab ecosystem**.
 - Existing source assets retain their published filenames and revisions.
 - Generated Product Reference files use
@@ -81,8 +81,8 @@ ESP32-C5HR8 (in-package PSRAM)
 
 Product-specific top and bottom board photographs are pending publication.
 
-![UNIT PULSAR ESP32 C5 top view](./resources/unit_top_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png)
-![UNIT PULSAR ESP32 C5 bottom view](./resources/unit_btm_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png)
+![UNIT PULSAR ESP32-C5 SENSE top view](./resources/unit_top_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png)
+![UNIT PULSAR ESP32-C5 SENSE bottom view](./resources/unit_btm_v1_2_3_ue0134_devlab_pulsar_esp32_c5.png)
 
 ## Pinout
 - [Top pinout](./unit_top_pinout_v1_2_3_ue0134_devlab_pulsar_esp32_c5_en.pdf)
@@ -173,7 +173,7 @@ ratings do not equal the current available at an expansion connector.
 
 ## References
 
-- [UNIT PULSAR ESP32-C5 repository](https://github.com/UNIT-Electronics-MX/unit_pulsar_esp32_c5)
+- [UNIT PULSAR ESP32-C5 SENSE repository](https://github.com/UNIT-Electronics-MX/unit_pulsar_esp32_c5)
 - [Product Reference](../docs/hardware/unit_product_reference_v_0_1_0_pulsar_esp32_c5.pdf)
 - [Product Reference source](../tools/product-reference/README.md)
 - [V1.2.3 schematic](unit_sch_v_1_2_3_ue0134_pulsar_esp32_c5.pdf)
