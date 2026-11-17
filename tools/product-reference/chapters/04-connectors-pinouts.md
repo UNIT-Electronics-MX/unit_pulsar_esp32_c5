@@ -110,7 +110,7 @@ the corresponding I2C bus is not in use.
 | NeoPixel in | GPIO0 (`NEOP_DIN`) | — | — | LED1 WS2812 1010; `D2` |
 | NeoPixel out | LED1 `DO` (`NEOP_DO`) | — | — | Header position 11 through solder jumper |
 | Flash | GPIO15–GPIO18, GPIO20–GPIO22 | SPI0/1 | — | BY25Q64; not available as GPIO |
-| PSRAM | In package | SPI0/1 | — | 8 MB, ESP32-C5HR8 |
+| PSRAM | In package; CS on SPICS1 (GPIO15) | SPI0/1 | — | 8 MB, ESP32-C5HR8; shares SPI0/1 with flash |
 | microSD | GPIO27, GPIO7, GPIO26, GPIO23 | SPI | — | CS on `D5` |
 | QWIIC | GPIO1 / GPIO6 | QWIIC I2C | — | J1 |
 | Battery monitor | GPIO2 / GPIO3 | Sensor I2C | `0x36` | MAX17048G+T10 |
@@ -120,7 +120,77 @@ the corresponding I2C bus is not in use.
 | Magnetometer | GPIO2 / GPIO3 | Sensor I2C | `0x30` | MMC5603NJ |
 | RF | `ANT_2G` (pin 42), `ANT_5G` (pin 48) | — | — | U1 diplexer to J2 |
 
-### **4.5 Arduino Nano Pinout Compatibility** {.section-page}
+### **4.5 GPIO Multiplexing (IO MUX)** {.section-page}
+
+Each ESP32-C5 GPIO selects one HP IO MUX function (F0–F2). Signals without
+a fixed IO MUX pin are routed through the GPIO Matrix. F0–F2 come from
+datasheet Table 2-3, LP functions from Table 2-5, and analog functions from
+Table 2-7. Priority follows datasheet Section 2.3.5: P2 = free use,
+P3 = use with caution, P4 = allocated, not recommended.
+
+| GPIO | Pin | F0 | F1 | F2 | LP / analog functions | Priority | Board use |
+|---:|---:|---|---|---|---|---|---|
+| 0 | 9 | GPIO0 | GPIO0 | — | LP_UART_DTRN; XTAL_32K_P | P2 | `D2`, NeoPixel data |
+| 1 | 10 | GPIO1 | GPIO1 | — | LP_UART_DSRN; XTAL_32K_N; ADC1_CH0 | P2 | `A1` / `D15`, QWIIC SDA |
+| 2 | 11 | MTMS | GPIO2 | FSPIQ | LP_UART_RTSN; LP_I2C_SDA; ADC1_CH1 | P3: strapping, JTAG | `SDA` / `D18`, sensor I2C |
+| 3 | 12 | MTDI | GPIO3 | — | LP_UART_CTSN; LP_I2C_SCL; ADC1_CH2 | P3: strapping, JTAG | `SCL` / `D19`, sensor I2C |
+| 4 | 13 | MTCK | GPIO4 | FSPIHD | LP_UART_RXD; ADC1_CH3 | P3: JTAG | `A2` / `D16` |
+| 5 | 14 | MTDO | GPIO5 | FSPIWP | LP_UART_TXD; ADC1_CH4 | P3: JTAG | `A3` / `D17` |
+| 6 | 15 | GPIO6 | GPIO6 | FSPICLK | LP_GPIO6; ADC1_CH5 | P2 | `A6` / `D21`, QWIIC SCL |
+| 7 | 16 | SDIO_DATA1 | GPIO7 | FSPID | — | P3: strapping | `D11` / `MOSI`, microSD CMD, J20 |
+| 8 | 17 | SDIO_DATA0 | GPIO8 | — | PAD_COMP0 | P2 | Not routed to the header (net label `D2`) |
+| 9 | 18 | SDIO_CLK | GPIO9 | — | PAD_COMP1 | P2 | `D4` |
+| 10 | 19 | SDIO_CMD | GPIO10 | FSPICS0 | — | P2 | `D10` / `SS`, J20 |
+| 11 | 20 | U0TXD | GPIO11 | — | — | P3: UART0 | `TX0` / `D1` |
+| 12 | 21 | U0RXD | GPIO12 | — | — | P3: UART0 | `RX0` / `D0` |
+| 13 | 22 | SDIO_DATA3 | GPIO13 | — | USB_D- | P3: USB | `D8`, USB-C D- |
+| 14 | 23 | SDIO_DATA2 | GPIO14 | — | USB_D+ | P3: USB | `D9`, USB-C D+ |
+| 15 | 25 | SPICS1 | GPIO15 | — | — | P4 | PSRAM chip select (SPI0/1) |
+| 16 | 26 | SPICS0 | GPIO16 | — | — | P4 | Flash CS# (SPI0/1) |
+| 17 | 27 | SPIQ | GPIO17 | — | — | P4 | Flash / PSRAM SIO1 |
+| 18 | 28 | SPIWP | GPIO18 | — | — | P4 | Flash / PSRAM SIO2 |
+| 19 | 29 | GPIO19 | GPIO19 | — | VDD_SPI | P3: VDD_SPI | Not routed to the header |
+| 20 | 30 | SPIHD | GPIO20 | — | — | P4 | Flash / PSRAM SIO3 |
+| 21 | 31 | SPICLK | GPIO21 | — | — | P4 | Flash / PSRAM CLK |
+| 22 | 32 | SPID | GPIO22 | — | — | P4 | Flash / PSRAM SIO0 |
+| 23 | 33 | GPIO23 | GPIO23 | — | — | P2 | `D5`, microSD CS |
+| 24 | 34 | GPIO24 | GPIO24 | — | — | P2 | `D6` |
+| 25 | 35 | GPIO25 | GPIO25 | — | — | P3: strapping | `D7` |
+| 26 | 36 | GPIO26 | GPIO26 | — | — | P3: strapping | `D12` / `MISO`, microSD DAT0, J20 |
+| 27 | 37 | GPIO27 | GPIO27 | — | — | P3: strapping | `D13` / `SCK`, microSD CLK, J20, LED |
+| 28 | 38 | GPIO28 | GPIO28 | — | — | P3: strapping | `D3` / `BOOT` |
+
+LP functions use LP GPIO numbering (LP_GPIO0–LP_GPIO6 = GPIO0–GPIO6) and remain
+available in low-power modes. GPIO15–GPIO18 and GPIO20–GPIO22 connect to the
+external flash and the in-package PSRAM and must not be reconfigured.
+
+### **4.6 Peripheral Pin Assignment** {.section-page}
+
+The table summarizes datasheet Table 2-8 for this board. Fixed pins (P1)
+connect directly through the HP or LP IO MUX. Peripherals marked GPIO Matrix
+can be assigned to any available GPIO, subject to the priorities in
+Section 4.5.
+
+| Peripheral | Fixed IO MUX pins (P1) | GPIO Matrix | Board notes |
+|---|---|---|---|
+| USB Serial/JTAG | GPIO13 (D-), GPIO14 (D+) | No | USB-C; also `D8` / `D9` |
+| JTAG | GPIO2 MTMS, GPIO3 MTDI, GPIO4 MTCK, GPIO5 MTDO | No | Pins used as I2C / analog; debug through USB |
+| SDIO slave | GPIO7 DATA1, GPIO8 DATA0, GPIO9 CLK, GPIO10 CMD, GPIO13 DATA3, GPIO14 DATA2 | No | Conflicts with USB and SPI on this board |
+| ADC1 | GPIO1–GPIO6 (CH0–CH5) | No | `A1`–`A6` |
+| Analog voltage comparator | GPIO8 PAD_COMP0, GPIO9 PAD_COMP1 | No | GPIO9 at `D4`; GPIO8 not routed |
+| LP UART | GPIO0 DTRN, GPIO1 DSRN, GPIO2 RTSN, GPIO3 CTSN, GPIO4 RXD, GPIO5 TXD | No | Available in low-power modes |
+| LP I2C | GPIO2 SDA, GPIO3 SCL | No | Same pins as the sensor I2C bus |
+| UART0 | GPIO11 TXD, GPIO12 RXD | Yes | `TX0` / `RX0`; console and download |
+| UART1 | — | Yes | Any available GPIO |
+| SPI2 (FSPI) | GPIO2 Q, GPIO4 HD, GPIO5 WP, GPIO6 CLK, GPIO7 D, GPIO10 CS0 | Yes | Board SPI (GPIO27/7/26/10) uses the GPIO Matrix |
+| SPI0/1 | GPIO15–GPIO18, GPIO20–GPIO22 | No | Flash and PSRAM; reserved |
+| I2C, CAN FD (TWAI), LED PWM, I2S, MCPWM, RMT, PCNT, PARLIO | — | Yes | Any available GPIO |
+
+Routing through the GPIO Matrix can limit the maximum signal frequency
+compared with fixed IO MUX pins. For timing-critical interfaces, check the
+ESP32-C5 Technical Reference Manual, chapter IO MUX and GPIO Matrix.
+
+### **4.7 Arduino Nano Pinout Compatibility** {.section-page}
 
 The board uses two parallel 15-position edge rows based on the Arduino Nano
 layout. This provides a familiar mechanical footprint and labeling pattern, but
@@ -143,7 +213,7 @@ Important differences include:
 Before installing the board into a Nano-style carrier, verify power, reset,
 analog, digital, and mechanically shared positions.
 
-### **4.6 QWIIC Connector** {.section-page}
+### **4.8 QWIIC Connector** {.section-page}
 
 J1 is a four-position, 1 mm-pitch QWIIC connector carrying:
 
@@ -162,7 +232,7 @@ The QWIIC 3.3 V supply is provided by the SGM6029 regulator, which supports up
 to 1 A total output current shared between the onboard circuitry and all
 external 3.3 V loads.
 
-### **4.7 J20 SPI Connector** {.section-page}
+### **4.9 J20 SPI Connector** {.section-page}
 
 J20 is a six-position, 1 mm-pitch SH connector for external SPI devices.
 
@@ -178,7 +248,7 @@ J20 is a six-position, 1 mm-pitch SH connector for external SPI devices.
 SCK, MOSI, and MISO are shared with the microSD socket. Keep the microSD chip
 select (GPIO23) high while communicating with a J20 device.
 
-### **4.8 MicroSD Connector** {.section-page}
+### **4.10 MicroSD Connector** {.section-page}
 
 | Socket signal | GPIO | Description |
 |---|---:|---|
@@ -194,7 +264,7 @@ Insert or remove the microSD card only when filesystem activity has stopped.
 Software should flush and close open files before card extraction or power
 removal.
 
-### **4.9 Battery Connections** {.section-page}
+### **4.11 Battery Connections** {.section-page}
 
 JP1 (PH 2.0 mm) and J3 (1.25 mm) provide two battery connector options wired
 in parallel to `VBAT`. Connect only one battery at a time.
@@ -211,13 +281,13 @@ A solder jumper can connect the battery rail to edge-pad position 4 (`VBAT`).
 
 Do not connect multi-cell battery packs or batteries exceeding 4.2 V.
 
-### **4.10 RF Antenna Connector** {.section-page}
+### **4.12 RF Antenna Connector** {.section-page}
 
 J2 is an RF1-2626-125CE-CT coaxial connector rated to 6 GHz. It carries the
 combined 2.4 GHz and 5 GHz signal from the U1 diplexer. Use a dual-band antenna
 with a mating plug and connect it before enabling radio transmission.
 
-### **4.11 USB-C, BOOT, and Reset** {.section-page}
+### **4.13 USB-C, BOOT, and Reset** {.section-page}
 
 The USB-C connector provides power, programming, and USB data connectivity.
 The USB D- and D+ signals connect to the ESP32-C5 USB Serial/JTAG controller
@@ -232,9 +302,85 @@ remains applied.
 A typical firmware-recovery sequence is to hold BOOT, press and release RESET,
 then release BOOT after the device enumerates in download mode.
 
-### **4.12 Debug Interface** {.section-page}
+### **4.14 Debug Interface** {.section-page}
 
 The ESP32-C5 USB Serial/JTAG controller provides serial console, firmware
 download, and JTAG debugging through the USB-C connector without an external
 probe. The JTAG pins (MTMS, MTDI, MTCK, MTDO) are used as GPIO2–GPIO5 on this
 board and are not routed to dedicated debug pads.
+
+### **4.15 Strapping Pins and Boot Modes** {.section-page}
+
+Strapping levels are sampled when `CHIP_PU` is released from reset. Normal
+GPIO operation after boot does not remove the need to keep these signals at
+valid levels during the reset interval. The [ESP32-C5 Series Datasheet v1.5](https://documentation.espressif.com/esp32-c5_datasheet_en.pdf),
+Section 3, specifies a 3 ms minimum hold interval after `CHIP_PU` rises.
+
+| Strapping signal | PULSAR connection | Boot-time role | Board-level design implication |
+|---|---|---|---|
+| GPIO28 | `D3` / BOOT push button | Selects SPI boot when high; download when low | An attached circuit must not pull it low during normal reset |
+| GPIO27 | `D13` / SPI SCK / user LED | Helps select download mode; ROM print control | A carrier on SCK must not force an unintended boot level |
+| GPIO26 | `D12` / SPI MISO | Helps select one download mode | Check the external SPI device's reset-state output |
+| GPIO25 | `D7`; optional `PGOOD` jumper | SDIO clock-edge selection | Check any carrier pull and the jumper state |
+| GPIO7 | `D11` / SPI MOSI | JTAG source selection | Check attached SPI devices at reset |
+| GPIO2 / MTMS | Sensor SDA / `D18` | Crystal-selection strap in a download mode | Sensor-bus pull-ups and external devices affect its reset level |
+| GPIO3 / MTDI | Sensor SCL / `D19` | SDIO clock-edge selection | Sensor-bus pull-ups and external devices affect its reset level |
+
+The chip-level boot combinations most relevant to USB-C programming are:
+
+| Mode | GPIO28 | GPIO27 | GPIO26 | Relevant PULSAR path |
+|---|---:|---:|---:|---|
+| SPI boot from flash | 1 | Any | Any | Normal application startup |
+| Joint download boot 0 | 0 | 1 | Any | USB Serial/JTAG or UART0 download |
+| Joint download boot 1 | 0 | 0 | 0 | UART0 or SDIO download; not the normal USB recovery path |
+
+The BOOT button pulls GPIO28 low; it does not by itself control GPIO27 or
+GPIO26. If USB recovery fails with a carrier attached, remove external loads
+from `D12` and `D13`, then repeat the BOOT/RESET sequence. These mode rows
+summarize datasheet Table 3-3 and do not replace its complete eFuse and
+chip-revision conditions. Do not change eFuses to solve a board wiring
+problem: eFuse programming is irreversible.
+
+### **4.16 Shared-Signal Ownership** {.section-page}
+
+The following combinations require a deliberate owner in the firmware or a
+jumper decision. A connector label alone does not reserve the GPIO for that
+connector.
+
+| Signal or resource | Existing board owner | Competing use | Required decision |
+|---|---|---|---|
+| GPIO0 / `D2` | WS2812 data input | External digital I/O | Keep attached circuitry from disturbing LED timing; verify the `D2` artwork conflict before use |
+| GPIO1 and GPIO6 | QWIIC I2C | `A1` / `A6` ADC or GPIO | Use the pins for one function at a time; QWIIC needs external pull-ups |
+| GPIO2 and GPIO3 | Onboard sensor I2C | `A4` / `A5` ADC, external I2C, or pad JTAG | Keep JP2/JP3 closed for sensors; open them to isolate the sensor block, then verify reset strapping |
+| GPIO6 | QWIIC SCL | VCNL4040 interrupt | Leave the `VCN Int` jumper open while using QWIIC |
+| GPIO7, GPIO26, GPIO27 | microSD SPI bus | J20 SPI and edge pads | Share SCK/MOSI/MISO with separate chip selects and one bus configuration at a time |
+| GPIO23 / `D5` | microSD chip select | MAX17048 `ALERT` through EN_PAD2 | Do not bridge `ALERT` while using `D5` as microSD CS without redesigning ownership |
+| GPIO24 / `D6` | General-purpose pad | MAX17048 `QSTRT` through EN_PAD5 | Bridge only when firmware controls the fuel-gauge input |
+| GPIO25 / `D7` | General-purpose pad | BQ24074 `PGOOD` through EN_PAD3 | Bridge only when a power-good input is required; check its reset behavior |
+| GPIO27 / `D13` | SPI SCK | Pink user LED (`BUILTIN2`) | Expect the LED to respond to SPI activity; avoid blinking it independently while SPI is active |
+| GPIO13 and GPIO14 | USB D− and D+ | `D8` / `D9` as GPIO | Keep native USB enabled for USB programming and debugging |
+| 3.3 V rail | SoC and onboard devices | QWIIC, J20, and edge-pad loads | Budget total and peak current across all consumers (Section 2.7) |
+
+The default jumper states are listed in Section 3.2. The complete 30-position
+header mapping remains in Section 4.1. For a carrier design, document the
+selected owner of each shared net, the state of each solder jumper, and the
+voltage driven by the carrier both before and after reset.
+
+### **4.17 Connector Bring-up Checks** {.section-page}
+
+Use this sequence when an expansion module is attached for the first time:
+
+1. Identify the connector's physical pin 1, pitch, mating part, and cable
+   orientation from the mechanical drawing or the actual board.
+2. With power removed, check the module's supply voltage and common-ground
+   connection. The QWIIC and J20 supplies are 3.3 V.
+3. Compare every module signal with Sections 4.1 and 4.16. Check whether it
+   drives a strapping pin or a signal already used by microSD, a sensor, or USB.
+4. Confirm that optional solder jumpers are in the intended state before
+   powering the board. Record any modification to the board.
+5. Power through the intended source, verify the 3.3 V rail, and test the new
+   interface alone before enabling radio, storage, and other external loads.
+
+This procedure is especially important for Nano-style carriers: the footprint
+and labels resemble an Arduino Nano, but the PULSAR power and signal
+assignments differ as described in Section 4.7.

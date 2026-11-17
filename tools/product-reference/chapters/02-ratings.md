@@ -162,3 +162,79 @@ guaranteed board-level limits.
 8. Ensure that the total load on the 3.3 V rail, including onboard circuitry
    and externally connected devices, remains within the 1 A capability of the
    SGM6029 regulator.
+
+### **2.7 Power Budget for an Application** {.section-page}
+
+The 1 A figure is the SGM6029 **component output rating**, not a measurement
+of unused current at J1, J20, or the edge pads. Budget every load connected to
+the regulated 3.3 V rail, including devices that are only active briefly:
+
+`I_3V3,peak = I_SoC,peak + I_flash,peak + I_microSD,peak + I_sensors,peak + I_indicators,peak + I_external,peak`
+
+This sum is a conservative design check. Loads do not necessarily peak at the
+same instant, but omitting a shared load gives an overly optimistic result.
+Use the actual component datasheets for peripherals and measure the assembled
+board under the intended firmware workload. Allow margin for startup,
+wireless transmission, microSD writes, battery state, and connected modules.
+
+The following are **ESP32-C5 chip measurements**, not PULSAR board-current
+specifications. They are selected examples from the [Espressif ESP32-C5 Series
+Datasheet v1.5](https://documentation.espressif.com/esp32-c5_datasheet_en.pdf),
+Section 5.6, at 3.3 V and 25 °C. RF transmit figures use the conditions and
+power levels in that datasheet; application results depend on radio settings.
+
+| ESP32-C5 operating example | Chip current | Measurement scope |
+|---|---:|---|
+| 2.4 GHz Wi-Fi TX, 802.11b at 20 dBm | 320 mA peak | SoC only |
+| 5 GHz Wi-Fi TX, 802.11a at 18 dBm | 408 mA peak | SoC only |
+| Bluetooth LE TX at 20 dBm | 331 mA peak | SoC only |
+| 802.15.4 TX at 20 dBm | 337 mA peak | SoC only |
+| Deep-sleep, RTC timer and LP memory powered | 0.012 mA typical | SoC only |
+
+Deep-sleep current for the complete board will also include the charger,
+regulator, fuel gauge, indicators, sensors, and any external load that remains
+powered. Do not use the SoC-only figure to predict battery life. Measure board
+current from the chosen supply with the final jumper and peripheral
+configuration. A battery-life estimate also needs the duty cycle of each
+active state, conversion efficiency, and usable battery capacity.
+
+### **2.8 Power-Source Scenarios** {.section-page}
+
+The schematic shows separate Schottky paths from USB VBUS and VIN to `+5V`,
+then the BQ24074 power path to `BMS_OUT` and the SGM6029 to 3.3 V. The table
+describes connectivity, not a characterized switchover time or a guaranteed
+input range.
+
+| Connected source | Expected path from the schematic | Integration check |
+|---|---|---|
+| USB-C only | VBUS → D1 → `+5V` → BQ24074 → `BMS_OUT` → 3.3 V | Use a data-capable cable for programming; measure USB input current with the application active |
+| VIN only | VIN → D4 → `+5V` → BQ24074 → `BMS_OUT` → 3.3 V | Apply nominal 5 V and common ground; VIN operating range is not characterized at board level |
+| Battery only | `VBAT` → BQ24074 power path → `BMS_OUT` → 3.3 V | Verify cell polarity and low-battery behavior on the actual board |
+| USB-C or VIN plus battery | External input and cell meet at the BQ24074 power path | Verify charge current, system load, and thermal behavior in the final enclosure |
+| USB-C and VIN together | Both diode-isolated inputs feed `+5V` | Do not assume current sharing or seamless transfer; verify the specific supply combination |
+
+JP1 and J3 connect to the same `VBAT` net. They are alternative connector
+formats for one cell, not independent battery inputs. The `VBAT` edge pad is
+connected only after its solder jumper is bridged. Supply precedence, charging
+behavior under heavy system load, and low-battery cutoff are application-level
+verification items.
+
+### **2.9 Analog Input Design** {.section-page}
+
+The ESP32-C5 has one 12-bit SAR ADC with six channels on GPIO1–GPIO6. Chapter
+4 maps those GPIOs to the PULSAR edge labels. Four of the six analog-capable
+pins also serve one of the board's I2C buses, so an ADC channel must be
+released from I2C use before it is assigned to an analog signal.
+
+The [ESP32-C5 datasheet](https://documentation.espressif.com/esp32-c5_datasheet_en.pdf),
+Section 5.5, lists effective calibrated input ranges up to 3.3 V depending on
+attenuation. Its ADC characterization uses a 100 nF external capacitor, DC
+input, 25 °C ambient, and Wi-Fi disabled. Those results do not establish
+PULSAR board-level accuracy with radio traffic or a connected carrier.
+
+For a new analog connection, first select a free ADC-capable pad, then keep
+the signal within the 3.3 V logic domain with a shared ground. Use a divider
+or suitable front end for higher voltages. Choose attenuation and calibration
+in firmware, and validate the result at the expected source impedance and
+radio duty cycle. The `adc_read` example uses `A2` / GPIO4, which avoids the
+two I2C buses.

@@ -66,6 +66,7 @@ configuration, connected peripherals, or mechanical integration:
 | Hardware revision | V1.2.3 |
 | Product Reference | Version 0.1.0 |
 | Publication date | 2026-09-24 |
+| Technical expansion reviewed | 2026-11-17; Sections 2.7–2.9, 3.15–3.16, 4.15–4.17, and 5.10–5.12 |
 
 #### **9.5 Source Notes** {.section-page}
 

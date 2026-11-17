@@ -34,7 +34,7 @@ Bluetooth LE 5, Zigbee 3.0 and Thread 1.4.
 | MPN | UE0134 |
 | Microcontroller | ESP32-C5HR8 RISC-V SoC, dual-band Wi-Fi 6, Bluetooth LE 5, 802.15.4 |
 | Program Memory | BY25Q64ES 64 Mbit (8 MiB) QSPI NOR flash |
-| External Memory | 8 MiB PSRAM integrated in the ESP32-C5HR8 package |
+| PSRAM | 8 MiB, integrated in the ESP32-C5HR8 package (no separate component) |
 | Sensors | LPS22HB pressure, FHT40 humidity/temperature, VCNL4040 proximity/light, MMC5603NJ magnetometer |
 | Power | BQ24074 Li-ion charger, MAX17048 fuel gauge, SGM6029 buck regulator |
 | Storage | 47309-2651 microSD holder |

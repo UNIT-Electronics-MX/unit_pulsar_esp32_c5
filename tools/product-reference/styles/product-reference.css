@@ -351,6 +351,11 @@ body {
   break-before: auto;
 }
 
+/* Leave room for the chapter heading, intro, and 4.1 heading on the same page. */
+.pinout-page.pinout-page--first img {
+  max-height: 190mm;
+}
+
 .pinout-page img {
   width: auto;
   height: auto;

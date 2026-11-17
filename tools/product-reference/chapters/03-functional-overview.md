@@ -103,7 +103,10 @@ bootloader, partition table, application firmware, and any filesystem or data
 region defined by the selected partition scheme. These pins are not available
 for other uses.
 
-The ESP32-C5HR8 includes 8 MB of quad SPI PSRAM inside the package. In the
+The ESP32-C5HR8 includes 8 MB of quad SPI PSRAM inside the package. Because
+the PSRAM die is stacked within the SoC package, it does not appear as a
+separate component in the schematic or on the PCB; the BY25Q64ESHIG is the
+only discrete memory device. In the
 Arduino workflow, PSRAM must be enabled in the board options; ESP-IDF enables
 it through `menuconfig`. PSRAM is suited to network buffers, file buffers,
 sensor history, and large application structures. Interrupt state and
@@ -304,3 +307,46 @@ Applications using the radio together with storage and sensors should consider
 current peaks during transmission, memory allocation, task priorities, and
 storage write latency. Shared GPIO functions must also be considered when
 enabling optional solder-jumper connections.
+
+### **3.15 Wireless Coexistence and Board RF Path** {.section-page}
+
+The ESP32-C5 has Wi-Fi in the 2.4 GHz and 5 GHz bands; Bluetooth LE and
+IEEE 802.15.4 use the 2.4 GHz band. Espressif describes coexistence between
+the three radio families as time division in the [ESP32-C5 Series Datasheet
+v1.5](https://documentation.espressif.com/esp32-c5_datasheet_en.pdf), Product
+Overview. The board's U1 diplexer combines the chip's 2.4 GHz and 5 GHz RF
+ports into the single J2 coaxial path. A connected antenna must cover the
+intended bands and mate with J2.
+
+| Application choice | Board consequence |
+|---|---|
+| 2.4 GHz Wi-Fi with Bluetooth LE or 802.15.4 | The protocols share 2.4 GHz radio time; test latency and packet loss with the final duty cycles |
+| 5 GHz Wi-Fi plus 2.4 GHz protocol | Both bands use the one board RF connector and antenna; validate the complete RF assembly |
+| High transmit duty cycle | Include radio peaks in the 3.3 V power budget and inspect supply stability |
+| Antenna or enclosure change | Recheck range and regulatory suitability for the finished product |
+
+No conducted output power, antenna gain, radiated range, or coexistence
+throughput is characterized here for the assembled PULSAR board. Chip-level
+radio figures in the Espressif datasheet do not include J2, the diplexer,
+matching components, cable, antenna, or enclosure.
+
+### **3.16 SoC Security Features and Provisioning** {.section-page}
+
+The ESP32-C5 silicon provides secure boot, external-memory encryption,
+cryptographic accelerators, a true random number generator, and eFuse-based
+configuration, according to the [Espressif datasheet](https://documentation.espressif.com/esp32-c5_datasheet_en.pdf),
+Section 4.1.4. These are **SoC capabilities**. The V1.2.3 PULSAR schematic
+does not by itself show that a particular shipped board has keys provisioned,
+secure boot enabled, or flash encryption activated.
+
+For a product derived from this development board, decide which firmware
+images must be authenticated, which data must be encrypted, and how keys and
+recovery access will be managed. Record chip revision and eFuse state before
+provisioning. Validate the full update and recovery process on a spare board
+before applying irreversible eFuse settings to production hardware. Keep
+development credentials and production credentials separate in the firmware
+workflow.
+
+The microSD socket provides removable storage but is not automatically
+protected by the SoC's flash/PSRAM encryption path. An application that stores
+sensitive records on a card must handle their protection explicitly.
